@@ -1,1 +1,1 @@
-Tripwise project readme
+Welcome to Tripwise!
