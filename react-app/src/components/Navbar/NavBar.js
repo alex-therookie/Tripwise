@@ -8,16 +8,18 @@ const NavBar = () => {
 
   return (
     <nav className="nav-container">
-      <div className="nav-logo">
-        <NavLink to="/" exact={true} activeClassName="active">
-          <h2 className="nav-logo">Home</h2>
-        </NavLink>
-      </div>
-      <div
-        className="nav-menu-icon"
-        onClick={() => setMenuClicked(!menuClicked)}
-      >
-        <i className={menuClicked ? "fas fa-times" : "fas fa-bars"}></i>
+      <div className="nav-menu-logo">
+        <div
+          className="nav-menu-icon"
+          onClick={() => setMenuClicked(!menuClicked)}
+        >
+          <i className={menuClicked ? "fas fa-times" : "fas fa-bars"}></i>
+        </div>
+        <div className="nav-logo">
+          <NavLink to="/" exact={true} activeClassName="active">
+            <h2>Home</h2>
+          </NavLink>
+        </div>
       </div>
       <ul className={menuClicked ? "nav-menu-items active" : "nav-menu-items"}>
         <li>
@@ -53,6 +55,13 @@ const NavBar = () => {
         <li>
           <LogoutButton />
         </li>
+      </ul>
+      <div className="nav-profile">Profile</div>
+      <ul className={menuClicked ? "nav-drawer active" : "nav-drawer"}>
+        <li className="nav-drawer-links">Dashboard</li>
+        <li className="nav-drawer-links">Expenses</li>
+        <li className="nav-drawer-links">Trips</li>
+        <li className="nav-drawer-links">Friends</li>
       </ul>
     </nav>
   );
