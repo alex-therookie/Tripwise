@@ -1,0 +1,25 @@
+.nav-container {
+  background: #ffbd59;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.nav-logo {
+  justify-self: start;
+}
+
+.nav-menu-items {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 15px;
+  list-style: none;
+  text-align: center;
+  width: 50vw;
+  justify-content: flex-end;
+}
+
+.nav-menu-item {
+  text-decoration: none;
+}
