@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useSelector } from "react-redux";
 import "./NavBar.css";
@@ -18,9 +18,9 @@ const NavBar = () => {
           <i className={menuClicked ? "fas fa-times" : "fas fa-bars"}></i>
         </div>
         <div className="nav-logo">
-          <NavLink to="/" exact={true} activeClassName="active">
+          <Link to="/" exact={true} style={{ textDecoration: "none" }}>
             <h2>Home</h2>
-          </NavLink>
+          </Link>
         </div>
       </div>
       <ul className={menuClicked ? "nav-menu-items active" : "nav-menu-items"}>
@@ -55,7 +55,7 @@ const NavBar = () => {
             </li>
           </>
         )}
-        <li>
+        {/* <li>
           <NavLink
             to="/users"
             exact={true}
@@ -64,7 +64,7 @@ const NavBar = () => {
           >
             Users
           </NavLink>
-        </li>
+        </li> */}
       </ul>
       <ul className={menuClicked ? "nav-drawer active" : "nav-drawer"}>
         <li className="nav-drawer-links">Dashboard</li>

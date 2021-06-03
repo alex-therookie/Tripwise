@@ -5,6 +5,33 @@
   margin: 0 auto;
 }
 
+.dashboard-items {
+  height: 70px;
+  border: 1px solid gray;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dashboard-balances {
+  height: 60px;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
+  background-color: rgb(240, 240, 240);
+}
+
+.dashboard-balances div {
+  text-align: center;
+  width: 100%;
+}
+
+#balance-one {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+
 @media screen and (max-width: 969px) {
   .dashboard-container {
     width: 581px;
