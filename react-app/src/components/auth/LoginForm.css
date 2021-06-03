@@ -1,6 +1,6 @@
 .form-container {
-  width: 420px;
-  height: 395px;
+  width: 450px;
+  height: 420px;
   border: none;
   border-radius: 10px;
   margin: 0 auto;
@@ -9,12 +9,12 @@
   justify-content: space-around;
   align-items: center;
   margin-top: 60px;
-  padding: 25px;
+  padding: 35px;
   box-shadow: 3px 4px 8px gray;
 }
 
 .signup-form-container {
-  width: 420px;
+  width: 450px;
   height: 550px;
   border: none;
   border-radius: 10px;
@@ -24,7 +24,7 @@
   justify-content: space-around;
   align-items: center;
   margin-top: 60px;
-  padding: 25px;
+  padding: 35px;
   box-shadow: 3px 4px 8px gray;
 }
 
