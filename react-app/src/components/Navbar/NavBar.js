@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
+import { useSelector } from "react-redux";
 import "./NavBar.css";
 // testing
 const NavBar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
+  const user = useSelector((state) => state.session.user);
 
   return (
     <nav className="nav-container">
@@ -22,26 +24,37 @@ const NavBar = () => {
         </div>
       </div>
       <ul className={menuClicked ? "nav-menu-items active" : "nav-menu-items"}>
-        <li>
-          <NavLink
-            to="/login"
-            exact={true}
-            activeClassName="active"
-            className="nav-menu-item"
-          >
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/sign-up"
-            exact={true}
-            activeClassName="active"
-            className="nav-menu-item"
-          >
-            Sign Up
-          </NavLink>
-        </li>
+        {!user ? (
+          <>
+            <li>
+              <NavLink
+                to="/login"
+                exact={true}
+                activeClassName="active"
+                className="nav-menu-item"
+              >
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/sign-up"
+                exact={true}
+                activeClassName="active"
+                className="nav-menu-item"
+              >
+                Sign Up
+              </NavLink>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="nav-profile nav-menu-item">Profile</li>
+            <li>
+              <LogoutButton />
+            </li>
+          </>
+        )}
         <li>
           <NavLink
             to="/users"
@@ -52,11 +65,7 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
-        <li>
-          <LogoutButton />
-        </li>
       </ul>
-      <div className="nav-profile">Profile</div>
       <ul className={menuClicked ? "nav-drawer active" : "nav-drawer"}>
         <li className="nav-drawer-links">Dashboard</li>
         <li className="nav-drawer-links">Expenses</li>

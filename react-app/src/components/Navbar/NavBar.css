@@ -19,9 +19,9 @@
   align-items: center;
 }
 
-.nav-profile {
+/* .nav-profile {
   padding: 10px;
-}
+} */
 
 .nav-drawer {
   display: none;
@@ -33,7 +33,7 @@
   grid-gap: 15px;
   list-style: none;
   text-align: center;
-  width: 50vw;
+  width: 25vw;
   justify-content: flex-end;
   border: 1px solid red;
 }
