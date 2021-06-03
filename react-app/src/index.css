@@ -13,3 +13,7 @@ body {
   font-family: "Helvetica";
   scroll-behavior: smooth;
 }
+
+.btn {
+  cursor: pointer;
+}
