@@ -1,0 +1,18 @@
+.dashboard-container {
+  height: calc(100vh - 75px);
+  width: 60%;
+  border: 1px solid gray;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 969px) {
+  .dashboard-container {
+    width: 581px;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .dashboard-container {
+    width: 1030px;
+  }
+}
