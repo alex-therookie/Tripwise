@@ -7,15 +7,27 @@ const Dashboard = () => {
       <div className="dashboard-items">
         <h2>Dashboard</h2>
         <div className="dashboard-btn-wrapper">
-          <button className="btn btn-large btn-green">Create trip</button>
+          <button className="btn btn-large btn-green">Plan a trip</button>
           <button className="btn btn-large btn-green">Add an expense</button>
           <button className="btn btn-large btn-orange">Settle up</button>
         </div>
       </div>
       <div className="dashboard-balances">
-        <div>total balance</div>
-        <div id="balance-one">you owe</div>
-        <div>you are owed</div>
+        <div>
+          <span>total balance</span>
+          <br />
+          <span id="total-balance">$66.93</span>
+        </div>
+        <div id="balance-one">
+          <span>you owe</span>
+          <br />
+          <span id="you-owe">$123.97</span>
+        </div>
+        <div>
+          <span>you are owed</span>
+          <br />
+          <span id="you-are-owed">$56.04</span>
+        </div>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ const NavBar = () => {
         </div>
         <div className="nav-logo">
           <Link to="/" exact={true} style={{ textDecoration: "none" }}>
-            <h2>Home</h2>
+            <h2>Tripwise</h2>
           </Link>
         </div>
       </div>
