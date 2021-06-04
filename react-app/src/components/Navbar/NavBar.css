@@ -52,14 +52,15 @@
 .nav-drawer {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  width: 20%;
-  height: 400px;
+  justify-content: flex-start;
+  width: 19.9%;
+  height: calc(100vh - 75px);
   position: absolute;
   top: 75px;
   left: -100%;
   opacity: 1;
   transition: all 0.5s ease;
+  padding: 10px 0;
 }
 
 .nav-drawer-links {
@@ -67,14 +68,25 @@
 }
 
 .nav-drawer.active {
-  background-color: #ffe1b4;
+  background-color: #f9f9f9;
   left: 0;
   opacity: 1;
   transition: all 0.5s ease;
-  z-index: 1;
+  z-index: 0;
 }
 
 .nav-drawer li {
   width: 100%;
-  border: 1px solid red;
+  /* border-left: 5px solid #ffbd59; */
+  /* border: 1px solid red; */
+  padding: 10px 0;
+  margin: 5px 0;
+  cursor: pointer;
+  color: rgb(131, 131, 131);
+  font-weight: bold;
+}
+
+.nav-drawer li:hover {
+  border-left: 5px solid #ffbd59;
+  background-color: rgba(221, 221, 221, 0.76);
 }
