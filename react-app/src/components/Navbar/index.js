@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useSelector } from "react-redux";
 import "./NavBar.css";
+import tripwiseLogo from "../../images/Tripwiselogo.png";
 // testing
 const NavBar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
@@ -17,6 +18,7 @@ const NavBar = () => {
         >
           <i className={menuClicked ? "fas fa-times" : "fas fa-bars"}></i>
         </div>
+        <img className="nav-img-logo" src={tripwiseLogo} />
         <div className="nav-logo">
           <Link to="/" exact={true} style={{ textDecoration: "none" }}>
             <h2>Tripwise</h2>
