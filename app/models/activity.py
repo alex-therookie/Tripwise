@@ -9,7 +9,7 @@ class Activity(db.Model):
     description = db.Column(db.String(255), nullable=True)
     photoUrl = db.Column(db.String(500), nullable=True)
     date = db.Column(db.Date, nullable=True)
-    tripId = db.Column(db.Integer, nullable=False)
+    tripId = db.Column(db.Integer, db.ForeignKey('trips.id'), nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
 
 
