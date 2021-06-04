@@ -13,10 +13,11 @@
   color: white;
 }
 .nav-menu-icon {
-  padding: 7px;
+  padding: 10px;
   cursor: pointer;
   font-size: 20px;
   color: rgb(98, 98, 98);
+  width: 38px;
 }
 
 .nav-img-logo {
@@ -71,6 +72,13 @@
   opacity: 1;
   transition: all 0.5s ease;
   padding: 10px 0;
+  box-shadow: 1px 1px 3px gray;
+}
+
+@media screen and (max-width: 969px) {
+  .nav-drawer {
+    width: 189.4px;
+  }
 }
 
 .nav-drawer-links {
