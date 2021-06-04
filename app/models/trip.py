@@ -1,4 +1,5 @@
 from .db import db
+from .user import trip_users
 
 class Trip(db.Model):
     __tablename__ = 'trips'
@@ -9,6 +10,8 @@ class Trip(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     activities = db.relationship("Activity", backref="trip", lazy="select")
+
+    users = db.relationship("Trip", secondary=trip_users, back_populates="trips")
 
     def to_dict(self):
         return {

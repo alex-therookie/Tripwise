@@ -2,6 +2,29 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
+follows = db.Table(
+    "follows",
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("followed_id", db.Integer, db.ForeignKey("users.id"))
+)
+
+trip_users = db.Table(
+    "trip_users",
+    db.Column(
+        "userId",
+        db.Integer,
+        db.ForeignKey("users.id"),
+        primary_key=True
+    ),
+    db.Column(
+        "tripId",
+        db.Integer,
+        db.ForeignKey("trips.id"),
+        primary_key=True
+    )
+)
+
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
@@ -12,6 +35,16 @@ class User(db.Model, UserMixin):
 
   comments = db.relationship("Comment", backref="user", lazy="select")
   user_expenses = db.relationship("ExpenseUser", backref="user", lazy="select")
+  followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.followed_id == id),
+        backref=db.backref("follows", lazy="dynamic"),
+        lazy="dynamic"
+    )
+
+  trips = db.relationship("Trip", secondary=trip_users, back_populates="users")
 
   @property
   def password(self):
@@ -34,4 +67,5 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "comments": self.comments,
       "user_expenses": self.user_expenses,
+      "followers": self.followers
     }
