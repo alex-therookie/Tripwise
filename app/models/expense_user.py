@@ -7,11 +7,10 @@ class ExpenseUser(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     expenseId = db.Column(db.Integer, db.ForeignKey('expenses.id'), nullable=False)
 
-
     def to_dict(self):
         return {
             "id": self.id,
-            "balance":self.balance,
+            "balance": self.balance,
             "userId": self.userId,
             "expenseId": self.expenseId
         }

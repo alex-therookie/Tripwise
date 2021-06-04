@@ -9,11 +9,10 @@ class Comment(db.Model):
     expenseId = db.Column(db.Integer, db.ForeignKey('expenses.id'), nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
 
-
     def to_dict(self):
         return {
             "id": self.id,
-            "text":self.text,
+            "text": self.text,
             "expenseId": self.expenseId,
             "createdAt": self.createdAt
         }
