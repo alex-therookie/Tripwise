@@ -1,25 +1,27 @@
 .dashboard-container {
   height: calc(100vh - 75px);
   width: 60%;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   margin: 0 auto;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 }
 
 .dashboard-items {
   height: 70px;
-  border: 1px solid gray;
-  background-color: rgb(240, 240, 240);
+  border-bottom: 1px solid #ddd;
+  background-color: #eee;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 .dashboard-balances {
   height: 60px;
-  border: 1px solid gray;
+  border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-around;
-  padding: 5px 0;
-  background-color: rgb(240, 240, 240);
+  padding: 10px;
+  background-color: #eee;
 }
 
 .dashboard-balances div {
@@ -28,8 +30,8 @@
 }
 
 #balance-one {
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
 @media screen and (max-width: 969px) {
@@ -42,4 +44,31 @@
   .dashboard-container {
     width: 1030px;
   }
+}
+
+.btn-large {
+  padding: 9px 14px;
+  font-size: 15px;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.btn {
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.btn-orange {
+  background: #ffbd59;
+  color: #fff;
+  text-shadow: 0 -1px 0 #ffb649;
+}
+
+.btn-green {
+  background: #03989e;
+  color: #fff;
+  text-shadow: 0 -1px 0 #017d81;
 }

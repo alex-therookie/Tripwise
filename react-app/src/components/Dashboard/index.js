@@ -7,9 +7,9 @@ const Dashboard = () => {
       <div className="dashboard-items">
         <h2>Dashboard</h2>
         <div className="dashboard-btn-wrapper">
-          <button>Create Trip</button>
-          <button>Add Expense</button>
-          <button>Settle Up</button>
+          <button className="btn btn-large btn-green">Create trip</button>
+          <button className="btn btn-large btn-green">Add an expense</button>
+          <button className="btn btn-large btn-orange">Settle up</button>
         </div>
       </div>
       <div className="dashboard-balances">
