@@ -11,12 +11,14 @@ class Trip(db.Model):
 
     activities = db.relationship("Activity", backref="trip", lazy="select")
 
-    users = db.relationship("Trip", secondary=trip_users, back_populates="trips")
+    users = db.relationship("User", secondary=trip_users, back_populates="trips")
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
             "photoUrl": self.photoUrl,
-            "userId": self.userId
+            "userId": self.userId,
+            "activities": self.activities,
+            "users": self.users
         }

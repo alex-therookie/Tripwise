@@ -67,5 +67,6 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "comments": self.comments,
       "user_expenses": self.user_expenses,
-      "followers": self.followers
+      "followers": self.followers,
+      "trips": self.trips
     }
