@@ -10,6 +10,8 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
 
+  comments = db.relationship("Comment", backref="user", lazy="select")
+  user_expenses = db.relationship("ExpenseUser", backref="user", lazy="select")
 
   @property
   def password(self):
@@ -29,5 +31,7 @@ class User(db.Model, UserMixin):
     return {
       "id": self.id,
       "username": self.username,
-      "email": self.email
+      "email": self.email,
+      "comments": self.comments,
+      "user_expenses": self.user_expenses,
     }

@@ -12,6 +12,8 @@ class Expense(db.Model):
     activityId = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=True)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
 
+    comments = db.relationship("Comment", backref="expense", lazy="joined")
+    expense_users = db.relationship("ExpenseUser", backref="expense", lazy="select")
 
     def to_dict(self):
         return {
@@ -21,5 +23,7 @@ class Expense(db.Model):
             "photoUrl": self.photoUrl,
             "tripId": self.tripId,
             "activityId": self.activityId,
-            "createdAt": self.createdAt
+            "createdAt": self.createdAt,
+            "comments": self.comments,
+            "expense_users": self.expense_users
         }
