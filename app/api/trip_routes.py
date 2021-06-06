@@ -6,7 +6,8 @@ trip_routes = Blueprint('trips', __name__)
 
 @trip_routes.route("/")
 def get_trips():
-    return {"trips": []}
+    trips = Trip.query.all()
+    return {"trips": [trip.to_dict() for trip in trips] }
 
 @trip_routes.route("/", methods=["POST"])
 def create_trip():
