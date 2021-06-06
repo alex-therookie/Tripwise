@@ -9,6 +9,11 @@ def get_trips():
     trips = Trip.query.all()
     return {"trips": [trip.to_dict() for trip in trips] }
 
+@trip_routes.route('/<id>')
+def get_trip(id):
+    trip = Trip.query.get(id)
+    return {"trip": trip.to_dict()}
+
 @trip_routes.route("/", methods=["POST"])
 def create_trip():
     data = request.json
