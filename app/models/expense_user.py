@@ -10,7 +10,7 @@ class ExpenseUser(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "balance": self.balance,
+            "balance": str(self.balance),
             "userId": self.userId,
             "expenseId": self.expenseId
         }

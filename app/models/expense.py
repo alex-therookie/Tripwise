@@ -19,7 +19,7 @@ class Expense(db.Model):
         return {
             "id": self.id,
             "description": self.description,
-            "amount": self.amount,
+            "amount": str(self.amount),
             "photoUrl": self.photoUrl,
             "tripId": self.tripId,
             "activityId": self.activityId,

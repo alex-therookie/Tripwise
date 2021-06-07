@@ -19,13 +19,14 @@ def create_expenses():
     db.session.add(expense)
     db.session.commit()
 
-    expense_user = ExpenseUser(
-        balance=data['expense_users'][0]['balance'],
-        userId=2,
-        expenseId=expense.id,
-    )
+    for user in data["expense_users"]:
+        expense_user = ExpenseUser(
+            balance=user['balance'],
+            userId=user['userId'],
+            expenseId=expense.id,
+        )
+        db.session.add(expense_user)
 
-    db.session.add(expense_user)
     db.session.commit()
 
-    return {}
+    return expense.to_dict()
