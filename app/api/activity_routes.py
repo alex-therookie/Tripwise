@@ -26,3 +26,11 @@ def create_activity():
 def get_acitivty(id):
     activity = Activity.query.get(id)
     return activity.to_dict()
+
+@activity_routes.route("/<id>", methods=['DELETE'])
+def delete_activity(id):
+    activity = Activity.query.get(id)
+    db.session.delete(activity)
+    db.session.commit()
+
+    return {}, 204
