@@ -12,7 +12,7 @@ def get_trips():
 @trip_routes.route('/<id>')
 def get_trip(id):
     trip = Trip.query.get(id)
-    return {"trip": trip.to_dict()}
+    return trip.to_dict()
 
 @trip_routes.route("/", methods=["POST"])
 def create_trip():

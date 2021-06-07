@@ -40,7 +40,7 @@ app.register_blueprint(expense_routes, url_prefix='/api/expenses')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
 app.register_blueprint(activity_routes, url_prefix='/api/activities')
 db.init_app(app)
-Migrate(app, db)
+Migrate(app, db, compare_type=True)
 
 # Application Security
 CORS(app)
