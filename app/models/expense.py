@@ -24,6 +24,6 @@ class Expense(db.Model):
             "tripId": self.tripId,
             "activityId": self.activityId,
             "createdAt": self.createdAt,
-            "comments": self.comments,
-            "expense_users": self.expense_users
+            "comments": [comment.to_dict() for comment in self.comments],
+            "expense_users": [expense_user.to_dict() for expense_user in self.expense_users]
         }
