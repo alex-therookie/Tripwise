@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Trip
+from app.models import Trip, Activity
 from app import db
 
 trip_routes = Blueprint('trips', __name__)

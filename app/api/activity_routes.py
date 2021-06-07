@@ -21,3 +21,8 @@ def create_activity():
     db.session.commit()
 
     return activity.to_dict()
+
+@activity_routes.route('/<id>')
+def get_acitivty(id):
+    activity = Activity.query.get(id)
+    return activity.to_dict()
