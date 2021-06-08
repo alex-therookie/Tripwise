@@ -59,13 +59,12 @@ class User(db.Model, UserMixin):
   def check_password(self, password):
     return check_password_hash(self.password, password)
 
-
   def to_dict(self):
     return {
       "id": self.id,
       "username": self.username,
       "email": self.email,
-      "user_expenses": self.user_expenses,
+      "user_expenses": {user_expense.id: str(user_expense.balance) for user_expense in self.user_expenses},
       "followers": [follower for follower in self.followers],
-      "trips": self.trips
+      "trips": {trip.id: trip.name for trip in self.trips}
     }

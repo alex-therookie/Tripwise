@@ -9,7 +9,7 @@ class Trip(db.Model):
     photoUrl = db.Column(db.String(500), nullable=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    activities = db.relationship("Activity", backref="trip", lazy="select")
+    activities = db.relationship("Activity", backref="trip", lazy="dynamic")
 
     users = db.relationship("User", secondary=trip_users, back_populates="trips")
 
@@ -19,6 +19,14 @@ class Trip(db.Model):
             "name": self.name,
             "photoUrl": self.photoUrl,
             "userId": self.userId,
+        }
+
+    def to_dict_detail(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "photoUrl": self.photoUrl,
+            "userId": self.userId,
             "activities": [activity.to_dict() for activity in self.activities],
-            "users": self.users
+            "users": {user.id: user.username for user in self.users},
         }
