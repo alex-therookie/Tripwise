@@ -14,13 +14,13 @@ trip_users = db.Table(
     db.Column(
         "userId",
         db.Integer,
-        db.ForeignKey("users.id"),
+        db.ForeignKey("users.id"), #ondelete="CASCADE"
         primary_key=True
     ),
     db.Column(
         "tripId",
         db.Integer,
-        db.ForeignKey("trips.id"),
+        db.ForeignKey("trips.id"), #ondelete="CASCADE"
         primary_key=True
     )
 )
@@ -44,7 +44,7 @@ class User(db.Model, UserMixin):
         lazy="dynamic"
     )
 
-  trips = db.relationship("Trip", secondary=trip_users, back_populates="users")
+  trips = db.relationship("Trip", secondary=trip_users, back_populates="users", cascade="all, delete")
 
   @property
   def password(self):
@@ -66,5 +66,5 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "user_expenses": {user_expense.id: str(user_expense.balance) for user_expense in self.user_expenses},
       "followers": [follower for follower in self.followers],
-      "trips": {trip.id: trip.name for trip in self.trips}
+      "trips": [{"id":trip.id, "name": trip.name} for trip in self.trips]
     }

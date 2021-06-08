@@ -18,12 +18,12 @@ def get_trip(id):
 def create_trip():
     data = request.json
 
-    curr_user = User.query.get(1)
+    curr_user = User.query.get(data["userId"])
     # curr_user.to_dict()
 
     trip = Trip(
         name=data["name"],
-        userId=1,
+        userId=data["userId"],
         users=[curr_user]
     )
 
