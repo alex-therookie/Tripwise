@@ -9,7 +9,6 @@ const Dashboard = () => {
         <h2>Dashboard</h2>
         <div className="dashboard-btn-wrapper">
           <button className="btn btn-large btn-green">Plan a trip</button>
-          <button className="btn btn-large btn-green">Add an expense</button>
           <button className="btn btn-large btn-orange">Settle up</button>
         </div>
       </div>
