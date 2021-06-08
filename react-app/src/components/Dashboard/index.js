@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Trips from "../Trips/index";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -29,6 +30,7 @@ const Dashboard = () => {
           <span id="you-are-owed">$56.04</span>
         </div>
       </div>
+      <Trips />
     </div>
   );
 };
