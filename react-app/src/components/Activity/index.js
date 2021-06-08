@@ -25,6 +25,7 @@ const Activity = ({ activity }) => {
         }
       >
         <div className="activity-detail">
+          <div className="activity-detail-img">photo</div>
           <h4>{activity.name}</h4>
           <h5>{activity.date}</h5>
         </div>

@@ -9,7 +9,7 @@ class Trip(db.Model):
     photoUrl = db.Column(db.String(500), nullable=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    activities = db.relationship("Activity", backref="trip", lazy="dynamic")
+    activities = db.relationship("Activity", backref="trip", lazy="dynamic", cascade="all, delete")
 
     users = db.relationship("User", secondary=trip_users, back_populates="trips", passive_deletes=True)
 
