@@ -1,0 +1,33 @@
+.activity-container {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.activity-details {
+  margin: 0 1px;
+  padding: 2px;
+  color: #333;
+}
+
+.activity-date {
+  width: 75px;
+}
+
+.activity-name {
+  width: 33%;
+}
+
+.activity-img {
+  width: 75px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.activity-balance {
+  margin: 0 0 0 auto;
+  width: 75px;
+}
