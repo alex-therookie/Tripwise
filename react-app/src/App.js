@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Dashboard from "./components/Dashboard";
+import TripDetail from "./components/TripDetail";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <Dashboard />
+        </ProtectedRoute>
+        <ProtectedRoute path="/trips/:tripId" exact={true}>
+          <TripDetail />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

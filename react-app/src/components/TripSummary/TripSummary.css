@@ -1,0 +1,39 @@
+.trips-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-summary {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.trip-details {
+  height: 100%;
+  text-align: center;
+  margin: 0 1px;
+  padding: 2px;
+}
+
+.trip-date {
+  width: 75px;
+}
+
+.trip-header {
+  width: 33%;
+}
+
+.trip-photo {
+  width: 75px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.trip-balance {
+  margin: 0 0 0 auto;
+  width: 75px;
+}

@@ -17,7 +17,7 @@ export const addTrip = (trip) => {
 };
 
 export const getTrip = (tripId) => async (dispatch) => {
-  const res = await fetch(`/api/${tripId}/`);
+  const res = await fetch(`/api/trips/${tripId}`);
   if (res.ok) {
     const trip = await res.json();
     console.log(trip);
