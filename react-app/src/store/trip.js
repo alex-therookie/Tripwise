@@ -29,13 +29,11 @@ export const postTrip = (trip) => async (dispatch) => {
   const res = await fetch(`/api/trips/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: {
-      trip: JSON.stringify(trip),
-    },
+    body: JSON.stringify({ trip }),
   });
-  const trip = await res.json();
-  console.log(trip);
-  dispatch(addTrip(trip));
+  const tripData = await res.json();
+  console.log(tripData);
+  dispatch(addTrip(tripData));
 };
 
 const initialState = {};
@@ -43,18 +41,16 @@ const initialState = {};
 const tripReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_TRIP: {
-      const { trip } = action;
-
       return {
         ...state,
-        [trip.id]: trip,
+        [action.trip.id]: action.trip,
       };
     }
 
     case ADD_TRIP: {
       return {
         ...state,
-        [trip.id]: trip,
+        [action.trip.id]: action.trip,
       };
     }
 
