@@ -18,10 +18,16 @@ const Activity = ({ activity }) => {
         <div className="activity-balance activity-details">$120.00</div>
       </div>
       <div
-        className={openActivity ? "activity-detail" : "activity-detail hidden"}
+        className={
+          openActivity
+            ? "activity-detail-dropdown"
+            : "activity-detail-dropdown hidden"
+        }
       >
-        <h4>{activity.name}</h4>
-        <h5>{activity.date}</h5>
+        <div className="activity-detail">
+          <h4>{activity.name}</h4>
+          <h5>{activity.date}</h5>
+        </div>
       </div>
     </div>
   );
