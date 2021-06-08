@@ -13,10 +13,9 @@
 }
 
 .trip-details {
-  height: 100%;
-  text-align: center;
   margin: 0 1px;
   padding: 2px;
+  color: #333;
 }
 
 .trip-date {

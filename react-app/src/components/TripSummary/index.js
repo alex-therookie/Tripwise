@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
-import { getTrip } from "../../store/trip";
+import React from "react";
+import {} from "react-redux";
+import { useHistory } from "react-router-dom";
 import "./TripSummary.css";
 
 const TripSummary = ({ trip }) => {
