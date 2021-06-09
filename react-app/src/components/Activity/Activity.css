@@ -60,7 +60,7 @@
 
 .activity-detail-dropdown.hidden {
   animation-name: close;
-  animation-duration: 0.4s;
+  animation-duration: 0s;
   animation-fill-mode: forwards;
   overflow: hidden;
 }

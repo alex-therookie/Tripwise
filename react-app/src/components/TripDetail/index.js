@@ -12,7 +12,6 @@ const TripDetail = () => {
   const { tripId } = useParams();
   const trip = useSelector((state) => state.trip[tripId]);
   const activities = useSelector((state) => state.trip[tripId]?.activities);
-  console.log(activities);
 
   useEffect(() => {
     dispatch(getTrip(tripId));
