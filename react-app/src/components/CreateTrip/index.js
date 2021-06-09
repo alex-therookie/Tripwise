@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import { postTrip } from "../../store/trip";
 import "./CreateTrip.css";
 
 const CreateTrip = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [name, setName] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [members, setMembers] = useState([]);
@@ -20,10 +22,10 @@ const CreateTrip = () => {
     fetchData();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, photoUrl, members);
-    dispatch(postTrip(name, photoUrl, members));
+    const trip = await dispatch(postTrip(name, photoUrl, members));
+    if (trip) history.push(`/trips/${trip.id}`);
   };
 
   const onChangeInput = (value) => {
