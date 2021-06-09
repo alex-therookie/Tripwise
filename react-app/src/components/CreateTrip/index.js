@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
+import { postTrip } from "../../store/trip";
 import "./CreateTrip.css";
 
 const CreateTrip = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
-  const [users, setUsers] = useState([]);
+  const [members, setMembers] = useState([]);
   const [friends, setFriends] = useState([]);
 
   useEffect(() => {
@@ -21,11 +22,12 @@ const CreateTrip = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(users);
+    console.log(name, photoUrl, members);
+    dispatch(postTrip(name, photoUrl, members));
   };
 
   const onChangeInput = (value) => {
-    setUsers(value);
+    setMembers(value);
   };
 
   return (

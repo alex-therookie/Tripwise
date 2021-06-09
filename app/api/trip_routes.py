@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from app.models import Trip, Activity, User
 from app import db
+from flask_login import current_user
 
 trip_routes = Blueprint('trips', __name__)
 
@@ -17,14 +18,14 @@ def get_trip(id):
 @trip_routes.route("/", methods=["POST"])
 def create_trip():
     data = request.json
+    curr_user = current_user.to_dict()
 
-    curr_user = User.query.get(data["userId"])
-    # curr_user.to_dict()
+    users = User.query.filter(User.id.in_(data["users"])).all()
 
     trip = Trip(
         name=data["name"],
-        userId=data["userId"],
-        users=[curr_user]
+        userId=curr_user["id"],
+        users=users
     )
 
     db.session.add(trip)

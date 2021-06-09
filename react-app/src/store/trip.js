@@ -25,15 +25,21 @@ export const getTrip = (tripId) => async (dispatch) => {
   }
 };
 
-export const postTrip = (trip) => async (dispatch) => {
+export const postTrip = (name, photoUrl, members) => async (dispatch) => {
+  console.log("INSIDE POST TRIP");
+  const users = [];
+  for (const member of members) {
+    users.push(member.value);
+  }
   const res = await fetch(`/api/trips/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ trip }),
+    body: JSON.stringify({ name, photoUrl, users }),
   });
   const tripData = await res.json();
   console.log(tripData);
   dispatch(addTrip(tripData));
+  return tripData;
 };
 
 const initialState = {};
