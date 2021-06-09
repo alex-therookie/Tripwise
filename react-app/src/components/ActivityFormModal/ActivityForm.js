@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { postActivity } from "../../store/trip";
 import "./ActivityForm.css";
 
 const ActivityForm = ({ tripId }) => {
@@ -13,6 +14,14 @@ const ActivityForm = ({ tripId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const activity = {
+      name,
+      photoUrl,
+      description,
+      date,
+      tripId,
+    };
+    dispatch(postActivity(activity));
   };
 
   return (
