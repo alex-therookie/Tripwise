@@ -30,6 +30,18 @@ const TripDetail = () => {
         </div>
       </div>
       <div className="trip-subbar">Your balance for this trip is $20</div>
+      <div className="trip-subbar">
+        Trip members:
+        <div className="trip-members">
+          {Object.entries(trip.users).map(([id, username]) => {
+            return (
+              <span key={id} className="trip-member">
+                {username}
+              </span>
+            );
+          })}
+        </div>
+      </div>
       <div className="activities-wrapper">
         {trip.activities.map((activity) => (
           <Activity activity={activity} />

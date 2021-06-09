@@ -36,11 +36,19 @@
 .trip-subbar {
   height: 40px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   background-color: #eee;
   padding: 13px 10px 10px;
   border-bottom: 1px solid #ddd;
+}
+
+.trip-members {
+  display: flex;
+}
+
+.trip-member {
+  padding: 0px 5px;
 }
 
 @media screen and (max-width: 969px) {
