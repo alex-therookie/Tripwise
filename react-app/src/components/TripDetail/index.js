@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getTrip } from "../../store/trip";
 import Activity from "../Activity";
+import ActivityFormModal from "../ActivityFormModal";
+import ExpenseFormModal from "../ExpenseFormModal";
 import "./TripDetail.css";
 
 const TripDetail = () => {
@@ -26,8 +28,8 @@ const TripDetail = () => {
           <h2 className="trip-name">{trip.name}</h2>
         </div>
         <div className="trip-btn-wrapper">
-          <button className="btn btn-large btn-green">Add an activity</button>
-          <button className="btn btn-large btn-green">Add an expense</button>
+          <ActivityFormModal />
+          <ExpenseFormModal />
           <button className="btn btn-large btn-orange">Settle up</button>
         </div>
       </div>
