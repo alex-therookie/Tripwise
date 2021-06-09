@@ -1,32 +1,33 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Select from "react-select";
 import "./CreateTrip.css";
 
 const CreateTrip = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [users, setUsers] = useState([]);
-  const [friends, setFriends] = useState([
-    { id: 1, name: "Demo" },
-    { id: 2, name: "tester" },
-  ]);
-  console.log("USERS", users);
+  const [friends, setFriends] = useState([]);
+  const [loadedFriends, setLoadedFriends] = useState(false);
+  console.log(friends);
 
-  const handleChange = (e) => {
-    const selected = [];
-    let selectFriends = e.target.selectedOptions;
-    console.log(selectFriends);
-
-    for (const selectFriend of selectFriends) {
-      selected.push(selectFriend.value);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("/api/users/");
+      const responseData = await response.json();
+      setFriends(responseData.users);
     }
-    if (!users.includes(...selected)) {
-      setUsers([...users, ...selected]);
-    }
-  };
+    fetchData();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(users);
+  };
+
+  const onChangeInput = (value) => {
+    setUsers(value);
   };
 
   return (
@@ -52,11 +53,15 @@ const CreateTrip = () => {
           onChange={(e) => setPhotoUrl(e.target.value)}
         />
         <div>Add members</div>
-        <select multiple={true} onChange={(e) => handleChange(e)}>
-          {friends.map((friend) => {
-            return <option value={friend.id}>{friend.name}</option>;
-          })}
-        </select>
+        <Select
+          defaultValue={[friends[0]]}
+          isMulti
+          name="colors"
+          options={friends}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={onChangeInput}
+        />
         <div>
           <button type="submit">Submit</button>
         </div>
