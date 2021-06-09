@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getTrip } from "../../store/trip";
 import Activity from "../Activity";
 import ActivityFormModal from "../ActivityFormModal";
+import ExpenseFormModal from "../ExpenseFormModal";
 import "./TripDetail.css";
 
 const TripDetail = () => {
@@ -28,7 +29,7 @@ const TripDetail = () => {
         </div>
         <div className="trip-btn-wrapper">
           <ActivityFormModal />
-          <button className="btn btn-large btn-green">Add an expense</button>
+          <ExpenseFormModal />
           <button className="btn btn-large btn-orange">Settle up</button>
         </div>
       </div>
