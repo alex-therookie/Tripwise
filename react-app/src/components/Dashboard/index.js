@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import Trips from "../Trips/index";
 import "./Dashboard.css";
 
@@ -8,7 +9,9 @@ const Dashboard = () => {
       <div className="dashboard-items">
         <h2>Dashboard</h2>
         <div className="dashboard-btn-wrapper">
-          <button className="btn btn-large btn-green">Plan a trip</button>
+          <NavLink to={"/new-trip"}>
+            <button className="btn btn-large btn-green">Plan a trip</button>
+          </NavLink>
           <button className="btn btn-large btn-orange">Settle up</button>
         </div>
       </div>

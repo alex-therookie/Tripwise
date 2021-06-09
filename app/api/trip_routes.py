@@ -9,7 +9,7 @@ def get_trips():
     trips = Trip.query.all()
     return {"trips": [trip.to_dict() for trip in trips] }
 
-@trip_routes.route('/<id>')
+@trip_routes.route('/<int:id>')
 def get_trip(id):
     trip = Trip.query.get(id)
     return trip.to_dict_detail()
