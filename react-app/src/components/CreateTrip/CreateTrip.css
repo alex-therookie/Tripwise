@@ -1,0 +1,35 @@
+.trip-form-container {
+  width: 450px;
+  height: 500px;
+  border: none;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  padding: 35px;
+  box-shadow: 3px 4px 8px gray;
+}
+
+.create-trip-btn {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  background-color: #03989e;
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+}
+
+.trip-form input {
+  padding: 10px;
+}
