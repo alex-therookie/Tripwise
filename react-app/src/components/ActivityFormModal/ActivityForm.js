@@ -4,9 +4,8 @@ import { useHistory, Redirect } from "react-router-dom";
 import { postActivity } from "../../store/trip";
 import "./ActivityForm.css";
 
-const ActivityForm = ({ tripId }) => {
+const ActivityForm = ({ tripId, setShowModal }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [name, setName] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [description, setDescription] = useState("");
@@ -22,7 +21,7 @@ const ActivityForm = ({ tripId }) => {
       tripId,
     };
     const activity = await dispatch(postActivity(activityForm));
-    if (activity) window.location.reload();
+    if (activity) setShowModal(false);
   };
 
   return (

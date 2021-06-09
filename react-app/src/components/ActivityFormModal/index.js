@@ -15,7 +15,11 @@ function ActivityFormModal({ tripId }) {
       </button>
       {showModal && (
         <ActivityModal onClose={() => setShowModal(false)}>
-          <ActivityForm tripId={tripId} />
+          <ActivityForm
+            tripId={tripId}
+            setShowModal={setShowModal}
+            showModal={showModal}
+          />
         </ActivityModal>
       )}
     </>
