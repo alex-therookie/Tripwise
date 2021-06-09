@@ -1,0 +1,45 @@
+.activity-form-container {
+  height: 520px;
+  width: 450px;
+  border: none;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 3px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px;
+  color: #333;
+  text-shadow: 0 -1px 0 #ffb649;
+  background-color: #ffbd59;
+}
+
+.create-activity-btn {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  background-color: #03989e;
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+}
+
+.activity-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 85%;
+}
+
+.activity-form input,
+.activity-form textarea {
+  padding: 10px;
+  margin: 4px 0px 0px;
+  width: 80%;
+  border-radius: 3px;
+  border: none;
+}
+
+.activity-form button {
+  margin-top: 15px;
+}

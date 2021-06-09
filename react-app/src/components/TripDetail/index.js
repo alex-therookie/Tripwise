@@ -28,7 +28,7 @@ const TripDetail = () => {
           <h2 className="trip-name">{trip.name}</h2>
         </div>
         <div className="trip-btn-wrapper">
-          <ActivityFormModal />
+          <ActivityFormModal tripId={trip.id} />
           <ExpenseFormModal />
           <button className="btn btn-large btn-orange">Settle up</button>
         </div>
@@ -48,7 +48,7 @@ const TripDetail = () => {
       </div>
       <div className="activities-wrapper">
         {activities.map((activity) => (
-          <Activity activity={activity} />
+          <Activity key={activity.id} activity={activity} />
         ))}
       </div>
     </div>

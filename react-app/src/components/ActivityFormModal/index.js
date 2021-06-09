@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ActivityModal from "./ActivityModal";
+import ActivityForm from "./ActivityForm";
 
-function ActivityFormModal() {
+function ActivityFormModal({ tripId }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -14,7 +15,7 @@ function ActivityFormModal() {
       </button>
       {showModal && (
         <ActivityModal onClose={() => setShowModal(false)}>
-          <div>Hello from activity form</div>
+          <ActivityForm tripId={tripId} />
         </ActivityModal>
       )}
     </>
