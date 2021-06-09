@@ -9,6 +9,8 @@ const TripDetail = () => {
   const dispatch = useDispatch();
   const { tripId } = useParams();
   const trip = useSelector((state) => state.trip[tripId]);
+  const activities = useSelector((state) => state.trip[tripId]?.activities);
+  console.log(activities);
 
   useEffect(() => {
     dispatch(getTrip(tripId));
@@ -43,7 +45,7 @@ const TripDetail = () => {
         </div>
       </div>
       <div className="activities-wrapper">
-        {trip.activities.map((activity) => (
+        {activities.map((activity) => (
           <Activity activity={activity} />
         ))}
       </div>
