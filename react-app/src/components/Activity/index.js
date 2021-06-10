@@ -9,8 +9,8 @@ const Activity = ({ activity }) => {
   };
 
   return (
-    <div className="activity-container" onClick={handleClick}>
-      <div className="activity-summary">
+    <div className="activity-container">
+      <div className="activity-summary" onClick={handleClick}>
         <div className="activity-date activity-details">July 4</div>
         <div className="activity-img activity-details">photo</div>
         <div className="activity-name activity-details">
