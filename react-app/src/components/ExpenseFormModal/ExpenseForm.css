@@ -37,12 +37,17 @@
 }
 
 .expense-form input {
-  padding: 10px;
+  padding: 8px 8px 5px 5px;
   width: 80%;
   border-radius: 3px;
+  font-size: 16px;
   border: none;
   border-bottom: 1px dashed gray;
   background-color: #f8f8f8;
+}
+
+.expense-form input:focus {
+  outline: none;
 }
 
 .amount-container,
