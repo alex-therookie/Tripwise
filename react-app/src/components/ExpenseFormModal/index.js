@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ExpenseModal from "./ExpenseModal";
 import ExpenseForm from "./ExpenseForm";
 
-function ExpenseFormModal() {
+function ExpenseFormModal({ activity }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ function ExpenseFormModal() {
       </button>
       {showModal && (
         <ExpenseModal onClose={() => setShowModal(false)}>
-          <ExpenseForm setShowModal={setShowModal} />
+          <ExpenseForm setShowModal={setShowModal} activity={activity} />
         </ExpenseModal>
       )}
     </>

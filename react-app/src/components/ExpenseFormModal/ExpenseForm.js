@@ -4,7 +4,7 @@ import { useHistory, Redirect } from "react-router-dom";
 // import { postExpense } from "../../store/trip";
 import "./ExpenseForm.css";
 
-const ExpenseForm = ({ tripId, setShowModal }) => {
+const ExpenseForm = ({ tripId, setShowModal, activity }) => {
   const dispatch = useDispatch();
   const [description, setDescription] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
@@ -12,12 +12,13 @@ const ExpenseForm = ({ tripId, setShowModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const expenseForm = {
-    //   amount,
-    //   photoUrl,
-    //   description,
-    //   tripId,
-    // };
+    const expenseForm = {
+      amount,
+      photoUrl,
+      description,
+      tripId,
+      activityId: activity.id,
+    };
     // const expense = await dispatch(postExpense(expenseForm));
     // if (expense) setShowModal(false);
   };

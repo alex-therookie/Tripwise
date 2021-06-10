@@ -32,7 +32,7 @@ const Activity = ({ activity }) => {
             <h5>{activity.date}</h5>
             <p>{activity.description}</p>
           </div>
-          <ExpenseFormModal />
+          <ExpenseFormModal activity={activity} />
         </div>
       </div>
     </div>
