@@ -7,28 +7,37 @@ import "./ExpenseForm.css";
 
 const ExpenseForm = ({ tripId, setShowModal, activity }) => {
   const dispatch = useDispatch();
+  let currUser = useSelector((state) => state.session.user);
+  currUser = { value: currUser.id, label: currUser.username };
   const [description, setDescription] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [amount, setAmount] = useState("");
-  const [expenseUsers, setExpenseUsers] = useState([]);
   const [members, setMembers] = useState([]);
   const [loadedMembers, setLoadedMembers] = useState(false);
-  const user = useSelector((state) => state.session.user);
+  const [expenseUsers, setExpenseUsers] = useState([]);
   // const users = useSelector((state) => state.trip[tripId].users);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const split = amount / expenseUsers.length;
+    const users = expenseUsers.map((user) => {
+      return user.value === currUser.id
+        ? { [currUser.id]: split }
+        : { [user.value]: -split };
+    });
+    console.log(users);
     const expenseForm = {
       amount,
       photoUrl,
       description,
       tripId,
       activityId: activity.id,
-      expenseUsers,
+      expenseUsers: users,
     };
     // const expense = await dispatch(postExpense(expenseForm));
     // if (expense) setShowModal(false);
   };
+  console.log("EXPENSE_USERS ===> ", expenseUsers);
 
   // TODO: Make selector get only trip members not all users
 
@@ -36,26 +45,26 @@ const ExpenseForm = ({ tripId, setShowModal, activity }) => {
     async function fetchData() {
       const response = await fetch("/api/users/");
       const responseData = await response.json();
-      setMembers(
-        responseData.users.filter((member) => user.id !== member.value)
+      const membersArr = responseData.users.filter(
+        (member) => currUser.value !== member.value
       );
+      setMembers(membersArr);
       setLoadedMembers(true);
+      setExpenseUsers([...membersArr, currUser]);
     }
     fetchData();
   }, []);
 
   const onChangeInput = (value) => {
-    setExpenseUsers(value);
+    setExpenseUsers([...value, currUser]);
   };
 
-  console.log("MEMBERSSSS ====> ", [...members]);
-
   return (
-    <div className="expense-form-container" onSubmit={handleSubmit}>
+    <div className="expense-form-container">
       <div className="expense-form-header">
         <h2>Add an expense</h2>
       </div>
-      <form className="expense-form">
+      <form id="e-form" className="expense-form" onSubmit={handleSubmit}>
         <div>
           <input
             className="name-input"
@@ -96,7 +105,7 @@ const ExpenseForm = ({ tripId, setShowModal, activity }) => {
           />
         )}
       </form>
-      <button className="create-expense-btn btn" type="submit">
+      <button form="e-form" className="create-expense-btn btn" type="submit">
         Submit
       </button>
     </div>
