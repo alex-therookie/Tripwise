@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 // import { postExpense } from "../../store/trip";
+import Select from "react-select";
 import "./ExpenseForm.css";
 
 const ExpenseForm = ({ tripId, setShowModal, activity }) => {
@@ -9,6 +10,11 @@ const ExpenseForm = ({ tripId, setShowModal, activity }) => {
   const [description, setDescription] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [amount, setAmount] = useState("");
+  const [expenseUsers, setExpenseUsers] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [loadedMembers, setLoadedMembers] = useState(false);
+  const user = useSelector((state) => state.session.user);
+  // const users = useSelector((state) => state.trip[tripId].users);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +28,24 @@ const ExpenseForm = ({ tripId, setShowModal, activity }) => {
     // const expense = await dispatch(postExpense(expenseForm));
     // if (expense) setShowModal(false);
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("/api/users/");
+      const responseData = await response.json();
+      setMembers(
+        responseData.users.filter((member) => user.id !== member.value)
+      );
+      setLoadedMembers(true);
+    }
+    fetchData();
+  }, []);
+
+  const onChangeInput = (value) => {
+    setExpenseUsers(value);
+  };
+
+  console.log("MEMBERSSSS ====> ", [...members]);
 
   return (
     <div className="expense-form-container" onSubmit={handleSubmit}>
@@ -57,6 +81,17 @@ const ExpenseForm = ({ tripId, setShowModal, activity }) => {
           placeholder="Photo URL"
           onChange={(e) => setPhotoUrl(e.target.value)}
         />
+        {loadedMembers && (
+          <Select
+            defaultValue={members}
+            isMulti
+            name="colors"
+            options={members}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={onChangeInput}
+          />
+        )}
       </form>
       <button className="create-expense-btn btn" type="submit">
         Submit
