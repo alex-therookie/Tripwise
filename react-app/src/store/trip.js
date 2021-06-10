@@ -25,10 +25,10 @@ export const addActivity = (activity) => {
   };
 };
 
-export const addExpense = (activity) => {
+export const addExpense = (expense) => {
   return {
     type: ADD_EXPENSE,
-    activity,
+    expense,
   };
 };
 
@@ -70,14 +70,13 @@ export const postActivity =
 export const postExpense =
   ({ description, photoUrl, tripId, amount, activityId, expenseUsers }) =>
   async (dispatch) => {
-    const users = expenseUsers.map((user) => user.value);
     const res = await fetch(`/api/expenses/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         amount,
         activityId,
-        users,
+        expense_users: expenseUsers,
         photoUrl,
         tripId,
         description,
@@ -113,7 +112,24 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         [trip.id]: {
           ...trip,
-          activities: [...trip.activities, action.activity],
+          activities: {
+            ...trip.activities,
+            [action.activity.id]: action.activity,
+          },
+        },
+      };
+    }
+
+    case ADD_EXPENSE: {
+      const trip = state[action.expense.tripId];
+      const activity = trip.activities[action.expense.activityId];
+      activity.expenses.push(action.expense);
+
+      return {
+        ...state,
+        [trip.id]: {
+          ...trip,
+          activities: { ...trip.activities, [activity.id]: activity },
         },
       };
     }

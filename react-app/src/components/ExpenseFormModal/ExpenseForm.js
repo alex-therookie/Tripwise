@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
-// import { postExpense } from "../../store/trip";
+import { postExpense } from "../../store/trip";
 import Select from "react-select";
 import "./ExpenseForm.css";
 
-const ExpenseForm = ({ tripId, setShowModal, activity }) => {
+const ExpenseForm = ({ setShowModal, activity }) => {
   const dispatch = useDispatch();
   let currUser = useSelector((state) => state.session.user);
   currUser = { value: currUser.id, label: currUser.username };
@@ -20,26 +20,30 @@ const ExpenseForm = ({ tripId, setShowModal, activity }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const split = amount / expenseUsers.length;
-    const users = expenseUsers.map((user) => {
-      return user.value === currUser.id
-        ? { [currUser.id]: split }
-        : { [user.value]: -split };
+    const users = {};
+    expenseUsers.forEach((user) => {
+      if (user.value === currUser.value) {
+        users[currUser.value] = split;
+      } else {
+        users[user.value] = -split;
+      }
     });
-    console.log(users);
+
     const expenseForm = {
       amount,
       photoUrl,
       description,
-      tripId,
+      tripId: activity.tripId,
       activityId: activity.id,
       expenseUsers: users,
     };
-    // const expense = await dispatch(postExpense(expenseForm));
-    // if (expense) setShowModal(false);
+    const expense = await dispatch(postExpense(expenseForm));
+    if (expense) setShowModal(false);
+    console.log("EXPENSE_FORM ===> ", expenseForm);
   };
-  console.log("EXPENSE_USERS ===> ", expenseUsers);
 
   // TODO: Make selector get only trip members not all users
+  // TODO: refactor Activity.id
 
   useEffect(() => {
     async function fetchData() {

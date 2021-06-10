@@ -19,10 +19,10 @@ def create_expenses():
     db.session.add(expense)
     db.session.commit()
 
-    for user in data["expense_users"]:
+    for userId, balance in data["expense_users"].items():
         expense_user = ExpenseUser(
-            balance=user['balance'],
-            userId=user['userId'],
+            balance=balance,
+            userId=userId,
             expenseId=expense.id,
         )
         db.session.add(expense_user)

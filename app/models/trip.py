@@ -27,6 +27,6 @@ class Trip(db.Model):
             "name": self.name,
             "photoUrl": self.photoUrl,
             "userId": self.userId,
-            "activities": [activity.to_dict() for activity in self.activities],
+            "activities": {activity.id: activity.to_dict() for activity in self.activities},
             "users": {user.id: user.username for user in self.users},
         }

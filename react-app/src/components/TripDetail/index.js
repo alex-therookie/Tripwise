@@ -44,8 +44,8 @@ const TripDetail = () => {
         </div>
       </div>
       <div className="activities-wrapper">
-        {activities.map((activity) => (
-          <Activity key={activity.id} activity={activity} />
+        {Object.entries(activities).map(([id, activity]) => (
+          <Activity key={id} activity={activity} />
         ))}
       </div>
     </div>
