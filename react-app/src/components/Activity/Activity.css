@@ -74,11 +74,17 @@
   }
 }
 
-.activity-detail h4,
-.activity-detail h5 {
+.activity-facts h4,
+.activity-facts h5 {
   color: #333;
 }
 
-.activity-detail {
+.activity-dropdown-detail {
   padding: 15px;
+}
+
+.btn-small {
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 14px;
 }

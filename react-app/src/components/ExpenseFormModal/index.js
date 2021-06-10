@@ -8,10 +8,10 @@ function ExpenseFormModal() {
   return (
     <>
       <button
-        className="btn btn-large btn-green"
+        className="btn btn-small btn-green"
         onClick={() => setShowModal(true)}
       >
-        Add an Expense
+        Add expense
       </button>
       {showModal && (
         <ExpenseModal onClose={() => setShowModal(false)}>

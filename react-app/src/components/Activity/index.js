@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ExpenseFormModal from "../ExpenseFormModal";
 import "./Activity.css";
 
 const Activity = ({ activity }) => {
@@ -24,11 +25,14 @@ const Activity = ({ activity }) => {
             : "activity-detail-dropdown hidden"
         }
       >
-        <div className="activity-detail">
-          <div className="activity-detail-img">photo</div>
-          <h4>{activity.name}</h4>
-          <h5>{activity.date}</h5>
-          <p>{activity.description}</p>
+        <div className="activity-dropdown-detail">
+          <div className="activity-facts">
+            <div className="activity-detail-img">photo</div>
+            <h4>{activity.name}</h4>
+            <h5>{activity.date}</h5>
+            <p>{activity.description}</p>
+          </div>
+          <ExpenseFormModal />
         </div>
       </div>
     </div>
