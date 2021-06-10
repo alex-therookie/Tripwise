@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ExpenseModal from "./ExpenseModal";
+import ExpenseForm from "./ExpenseForm";
 
 function ExpenseFormModal() {
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +15,7 @@ function ExpenseFormModal() {
       </button>
       {showModal && (
         <ExpenseModal onClose={() => setShowModal(false)}>
-          <div>Hello from Expense form</div>
+          <ExpenseForm setShowModal={setShowModal} />
         </ExpenseModal>
       )}
     </>
