@@ -24,6 +24,7 @@ const ExpenseForm = ({ tripId, setShowModal, activity }) => {
       description,
       tripId,
       activityId: activity.id,
+      expenseUsers,
     };
     // const expense = await dispatch(postExpense(expenseForm));
     // if (expense) setShowModal(false);

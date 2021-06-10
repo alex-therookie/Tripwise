@@ -2,6 +2,7 @@
 const LOAD_TRIP = "trip/LOAD_TRIP";
 const ADD_TRIP = "trip/ADD_TRIP";
 const ADD_ACTIVITY = "trip/ADD_ACTIVITY";
+const ADD_EXPENSE = "trip/ADD_EXPENSE";
 
 export const loadTrip = (trip) => {
   return {
@@ -24,6 +25,13 @@ export const addActivity = (activity) => {
   };
 };
 
+export const addExpense = (activity) => {
+  return {
+    type: ADD_EXPENSE,
+    activity,
+  };
+};
+
 export const getTrip = (tripId) => async (dispatch) => {
   const res = await fetch(`/api/trips/${tripId}`);
   if (res.ok) {
@@ -34,10 +42,7 @@ export const getTrip = (tripId) => async (dispatch) => {
 };
 
 export const postTrip = (name, photoUrl, members) => async (dispatch) => {
-  const users = [];
-  for (const member of members) {
-    users.push(member.value);
-  }
+  const users = members.map((user) => user.value);
   const res = await fetch(`/api/trips/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -60,6 +65,27 @@ export const postActivity =
     const activityData = await res.json();
     dispatch(addActivity(activityData));
     return activityData;
+  };
+
+export const postExpense =
+  ({ description, photoUrl, tripId, amount, activityId, expenseUsers }) =>
+  async (dispatch) => {
+    const users = expenseUsers.map((user) => user.value);
+    const res = await fetch(`/api/expenses/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        amount,
+        activityId,
+        users,
+        photoUrl,
+        tripId,
+        description,
+      }),
+    });
+    const expenseData = await res.json();
+    dispatch(addExpense(expenseData));
+    return expenseData;
   };
 
 const initialState = {};
