@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Trips from "../Trips/index";
 import "./Dashboard.css";
 
+// TODO: Make get request to get trips a user is member of
 const Dashboard = () => {
   return (
     <div className="dashboard-container">

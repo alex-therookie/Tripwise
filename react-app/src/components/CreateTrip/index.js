@@ -32,6 +32,8 @@ const CreateTrip = () => {
     setMembers(value);
   };
 
+  // TODO: Make selector get only following not all users
+
   return (
     <div className="trip-form-container" onSubmit={handleSubmit}>
       <div>

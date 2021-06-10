@@ -29,6 +29,8 @@ const ExpenseForm = ({ tripId, setShowModal, activity }) => {
     // if (expense) setShowModal(false);
   };
 
+  // TODO: Make selector get only trip members not all users
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/users/");
