@@ -37,7 +37,8 @@ const Activity = ({ activity }) => {
           </div>
           <ExpenseFormModal activity={activity} />
         </div>
-        <div className="activity-expenses-container">
+        <div className="activity-expenses-container scroll scroll1">
+          <div className="act-exp-header">Current expenses</div>
           {activity.expenses.map((expense) => (
             <ExpenseSummary expense={expense} />
           ))}

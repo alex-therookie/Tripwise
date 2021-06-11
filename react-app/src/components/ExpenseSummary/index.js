@@ -10,7 +10,7 @@ const ExpenseSummary = ({ expense }) => {
   return (
     <div className="exp-summary-container">
       <div className="exp-summary desc">{expense.description}</div>
-      <div className="exp-summary amount">{expense.amount}</div>
+      <div className="exp-summary amount">{`$${expense.amount}`}</div>
       <div className="exp-summary balance">{`$${expUser.balance}`}</div>
     </div>
   );
