@@ -1,0 +1,29 @@
+.exp-summary-container {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  font-size: 14px;
+  margin: 1px 0px;
+  background-color: rgb(254, 254, 254);
+  height: 27px;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.exp-summary-container:hover {
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2), 0px -2px 4px rgba(0, 0, 0, 0.2);
+  background-color: white;
+
+  z-index: 2;
+}
+.exp-summary {
+  width: 130px;
+  text-align: center;
+}
+
+.exp-summary.desc {
+  width: 175px;
+}

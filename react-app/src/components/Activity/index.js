@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ExpenseFormModal from "../ExpenseFormModal";
+import ExpenseSummary from "../ExpenseSummary";
 import "./Activity.css";
 
 const Activity = ({ activity }) => {
@@ -7,6 +8,8 @@ const Activity = ({ activity }) => {
   const handleClick = () => {
     setOpenActivity(!openActivity);
   };
+
+  // TODO: Refactor activities classnames
 
   return (
     <div className="activity-container">
@@ -33,6 +36,11 @@ const Activity = ({ activity }) => {
             <p>{activity.description}</p>
           </div>
           <ExpenseFormModal activity={activity} />
+        </div>
+        <div className="activity-expenses-container">
+          {activity.expenses.map((expense) => (
+            <ExpenseSummary expense={expense} />
+          ))}
         </div>
       </div>
     </div>

@@ -62,7 +62,7 @@
   animation-name: close;
   animation-duration: 0s;
   animation-fill-mode: forwards;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @keyframes close {
@@ -81,6 +81,12 @@
 
 .activity-dropdown-detail {
   padding: 15px;
+}
+
+.activity-expenses-container {
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .btn-small {
