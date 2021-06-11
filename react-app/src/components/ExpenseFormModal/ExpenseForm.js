@@ -19,7 +19,7 @@ const ExpenseForm = ({ setShowModal, activity }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const split = amount / expenseUsers.length;
+    const split = (amount / expenseUsers.length).toFixed(2);
     const users = {};
     expenseUsers.forEach((user) => {
       if (user.value === currUser.value) {
@@ -63,6 +63,8 @@ const ExpenseForm = ({ setShowModal, activity }) => {
     setExpenseUsers([...value, currUser]);
   };
 
+  if (!loadedMembers) return null;
+
   return (
     <div className="expense-form-container">
       <div className="expense-form-header">
@@ -97,17 +99,20 @@ const ExpenseForm = ({ setShowModal, activity }) => {
           placeholder="Photo URL"
           onChange={(e) => setPhotoUrl(e.target.value)}
         />
-        {loadedMembers && (
-          <Select
-            defaultValue={members}
-            isMulti
-            name="colors"
-            options={members}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            onChange={onChangeInput}
-          />
-        )}
+        <div>
+          Split the bill with friends:
+          {loadedMembers && (
+            <Select
+              defaultValue={members}
+              isMulti
+              name="colors"
+              options={members}
+              className="basic-multi-select"
+              classNamePrefix="select"
+              onChange={onChangeInput}
+            />
+          )}
+        </div>
       </form>
       <button form="e-form" className="create-expense-btn btn" type="submit">
         Submit
