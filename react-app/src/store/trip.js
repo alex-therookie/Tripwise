@@ -3,6 +3,7 @@ const LOAD_TRIP = "trip/LOAD_TRIP";
 const ADD_TRIP = "trip/ADD_TRIP";
 const ADD_ACTIVITY = "trip/ADD_ACTIVITY";
 const ADD_EXPENSE = "trip/ADD_EXPENSE";
+const SET_EXPENSE = "trip/SET_EXPENSE";
 
 export const loadTrip = (trip) => {
   return {
@@ -28,6 +29,13 @@ export const addActivity = (activity) => {
 export const addExpense = (expense) => {
   return {
     type: ADD_EXPENSE,
+    expense,
+  };
+};
+
+export const setExpenseDetail = (expense) => {
+  return {
+    type: SET_EXPENSE,
     expense,
   };
 };
@@ -131,6 +139,13 @@ const tripReducer = (state = initialState, action) => {
           ...trip,
           activities: { ...trip.activities, [activity.id]: activity },
         },
+      };
+    }
+
+    case SET_EXPENSE: {
+      return {
+        ...state,
+        expenseDetail: action.expense,
       };
     }
 

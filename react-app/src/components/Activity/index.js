@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import ExpenseFormModal from "../ExpenseFormModal";
 import ExpenseSummary from "../ExpenseSummary";
+import ExpenseDetail from "../ExpenseDetail";
 import "./Activity.css";
 
 const Activity = ({ activity }) => {
   const [openActivity, setOpenActivity] = useState(false);
-  const handleClick = () => {
+  const [showExpense, setShowExpense] = useState(false);
+  const activityClick = () => {
     setOpenActivity(!openActivity);
+  };
+
+  const expenseClick = () => {
+    setShowExpense(true);
   };
 
   // TODO: Refactor activities classnames
 
   return (
     <div className="activity-container">
-      <div className="activity-summary" onClick={handleClick}>
+      <div className="activity-summary" onClick={activityClick}>
         <div className="activity-date activity-details">July 4</div>
         <div className="activity-img activity-details">photo</div>
         <div className="activity-name activity-details">
@@ -40,8 +46,12 @@ const Activity = ({ activity }) => {
         <div className="activity-expenses-container scroll scroll1">
           <div className="act-exp-header">Current expenses</div>
           {activity.expenses.map((expense) => (
-            <ExpenseSummary expense={expense} />
+            <ExpenseSummary expense={expense} expenseClick={expenseClick} />
           ))}
+          <ExpenseDetail
+            setShowExpense={setShowExpense}
+            showExpense={showExpense}
+          />
         </div>
       </div>
     </div>
