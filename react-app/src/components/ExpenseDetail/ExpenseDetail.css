@@ -29,8 +29,7 @@
 }
 
 .close-exp {
-  position: absolute;
-  bottom: 700px;
+  margin: 10px 5px;
 }
 
 .exp-detail-header {
@@ -44,8 +43,37 @@
 
 .exp-detail-topbar {
   padding: 5px;
-  height: 100px;
+  height: 112px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  background-color: white;
+}
+
+.exp-receipt {
+  height: 100px;
+  width: 100px;
+  border: 1px solid red;
+  margin-right: 5px;
+  min-width: 100px;
+}
+
+.exp-desc {
+  font-size: 18px;
+  color: #333;
+}
+
+.exp-amount {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.exp-detail-users {
+  padding: 5px;
+  box-shadow: inset 0 5px 7px -5px rgb(0 0 0 / 25%);
+  font-size: 14px;
+}
+
+.exp-detail-users div {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
 }
