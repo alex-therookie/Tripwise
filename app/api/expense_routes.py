@@ -29,7 +29,10 @@ def create_expenses():
 
     db.session.commit()
 
-    return expense.to_dict()
+    expense_dic = expense.to_dict()
+    expense_dic["userId"] = data["userId"]
+    return expense_dic
+
 
 @expense_routes.route("/<id>", methods=['DELETE'])
 def delete_expense(id):

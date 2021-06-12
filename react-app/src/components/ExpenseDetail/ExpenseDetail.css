@@ -29,8 +29,8 @@
 }
 
 .close-exp {
-  border: 1px solid red;
-  bottom: 200px;
+  position: absolute;
+  bottom: 700px;
 }
 
 .exp-detail-header {
@@ -40,4 +40,12 @@
   color: white;
   text-shadow: 0 -1px 0 #017d81;
   text-align: center;
+}
+
+.exp-detail-topbar {
+  padding: 5px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

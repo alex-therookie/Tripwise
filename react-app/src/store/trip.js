@@ -76,7 +76,15 @@ export const postActivity =
   };
 
 export const postExpense =
-  ({ description, photoUrl, tripId, amount, activityId, expenseUsers }) =>
+  ({
+    description,
+    photoUrl,
+    tripId,
+    amount,
+    activityId,
+    expenseUsers,
+    userId,
+  }) =>
   async (dispatch) => {
     const res = await fetch(`/api/expenses/`, {
       method: "POST",
@@ -88,9 +96,11 @@ export const postExpense =
         photoUrl,
         tripId,
         description,
+        userId,
       }),
     });
     const expenseData = await res.json();
+    console.log(expenseData);
     dispatch(addExpense(expenseData));
     return expenseData;
   };

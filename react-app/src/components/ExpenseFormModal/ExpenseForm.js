@@ -36,6 +36,7 @@ const ExpenseForm = ({ setShowModal, activity }) => {
       tripId: activity.tripId,
       activityId: activity.id,
       expenseUsers: users,
+      userId: currUser.value,
     };
     const expense = await dispatch(postExpense(expenseForm));
     if (expense) setShowModal(false);
