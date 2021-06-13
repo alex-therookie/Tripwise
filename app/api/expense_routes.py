@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from app.models import Expense, ExpenseUser
+from flask_login import current_user
 from app import db
 
 expense_routes = Blueprint('expenses', __name__)
@@ -32,6 +33,11 @@ def create_expenses():
 
     return expense.to_dict()
 
+@expense_routes.route("/<int:tripId>")
+def get_expenses(tripId):
+    expenses = Expense.query.filter(Expense.tripId == tripId).all()
+    return {"expenses": [expense.to_dict() for expense in expenses] }
+
 
 @expense_routes.route("/<id>", methods=['DELETE'])
 def delete_expense(id):
@@ -40,3 +46,14 @@ def delete_expense(id):
     db.session.commit()
 
     return {}, 204
+#TODO Chnage this to expense_user route
+@expense_routes.route("/", methods=['PUT'])
+def update_expense_user():
+    data = request.json
+    curr_user = current_user.to_dict()
+    user_expense = ExpenseUser.query.filter(ExpenseUser.userId == curr_user["id"]).first()
+    total = float(user_expense.balance) + float(data["deposit"])
+    user_expense.balance = total
+    db.session.commit()
+
+    return user_expense.to_dict()

@@ -7,7 +7,12 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
   const { tripId } = useParams();
   const members = useSelector((state) => state.trip[tripId].users);
   const expense = useSelector((state) => state.trip.expenseDetail);
-  const handleClick = (e) => {
+  const user = useSelector((state) => state.session.user);
+  const handleClose = (e) => {
+    setShowExpense(false);
+  };
+
+  const handleSettle = (e) => {
     setShowExpense(false);
   };
 
@@ -38,15 +43,25 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
               return (
                 <div className="exp-detail-user">{`${
                   members[expUser.userId]
-                } owes ${members[expense.userId]} $${expUser.balance}`}</div>
+                } owes ${members[expense.userId]} $${Math.abs(
+                  expUser.balance
+                )}`}</div>
               );
             }
           })}
         </div>
       </div>
+      {user.id !== expense.userId && (
+        <button
+          className="settle-exp btn btn-small btn-orange"
+          onClick={handleSettle}
+        >
+          Settle Up
+        </button>
+      )}
       <button
         className="close-exp btn btn-small btn-green"
-        onClick={handleClick}
+        onClick={handleClose}
       >
         Close
       </button>

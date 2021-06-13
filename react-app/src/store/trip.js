@@ -1,5 +1,6 @@
 // Notes on store blueprint
 const LOAD_TRIP = "trip/LOAD_TRIP";
+const LOAD_EXPENSES = "trip/LOAD_EXPENSES";
 const ADD_TRIP = "trip/ADD_TRIP";
 const ADD_ACTIVITY = "trip/ADD_ACTIVITY";
 const ADD_EXPENSE = "trip/ADD_EXPENSE";
@@ -9,6 +10,13 @@ export const loadTrip = (trip) => {
   return {
     type: LOAD_TRIP,
     trip,
+  };
+};
+
+export const loadExpenses = (expenses) => {
+  return {
+    type: LOAD_EXPENSES,
+    expenses,
   };
 };
 
@@ -46,6 +54,15 @@ export const getTrip = (tripId) => async (dispatch) => {
     const trip = await res.json();
     console.log(trip);
     dispatch(loadTrip(trip));
+  }
+};
+
+export const getExpenses = (tripId) => async (dispatch) => {
+  const res = await fetch(`/api/expenses/${tripId}`);
+  if (res.ok) {
+    const expensesData = await res.json();
+    console.log("EXPENSES DATA ====> ", expensesData);
+    dispatch(loadExpenses(expensesData.expenses));
   }
 };
 
@@ -113,6 +130,17 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.trip.id]: action.trip,
+      };
+    }
+
+    case LOAD_EXPENSES: {
+      const expensesObj = {};
+      action.expenses.forEach((exp) => {
+        expensesObj[exp.id] = exp;
+      });
+      return {
+        ...state,
+        expenses: expensesObj,
       };
     }
 

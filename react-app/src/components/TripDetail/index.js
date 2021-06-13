@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getTrip } from "../../store/trip";
+import { getTrip, getExpenses } from "../../store/trip";
 import Activity from "../Activity";
 import ActivityFormModal from "../ActivityFormModal";
 import "./TripDetail.css";
@@ -11,10 +11,35 @@ const TripDetail = () => {
   const { tripId } = useParams();
   const trip = useSelector((state) => state.trip[tripId]);
   const activities = useSelector((state) => state.trip[tripId]?.activities);
+  const user = useSelector((state) => state.session.user);
+  const [userBalance, setUserBalance] = useState(0);
+  const expenses = useSelector((state) => state.trip.expenses);
+  console.log("EXPENSES ", expenses);
+  console.log("user balance", userBalance);
 
   useEffect(() => {
     dispatch(getTrip(tripId));
+    dispatch(getExpenses(tripId));
   }, [dispatch]);
+
+  useEffect(() => {
+    let owes = 0;
+    let paid = 0;
+
+    for (const key in expenses) {
+      if (expenses[key].userId === user.id) {
+        paid += expenses[key].amount;
+      } else {
+        for (const expUser of expenses[key].expense_users) {
+          if (expUser.userId === user.id) {
+            owes += Math.abs(expUser.balance);
+          }
+        }
+      }
+    }
+
+    setUserBalance(paid - owes);
+  }, [userBalance, expenses]);
 
   if (!trip) return null;
 
@@ -30,7 +55,13 @@ const TripDetail = () => {
           <button className="btn btn-large btn-orange">Settle up</button>
         </div>
       </div>
-      <div className="trip-subbar">Your balance for this trip is $20</div>
+      {userBalance < 0 ? (
+        <div className="trip-subbar">{`Trip balance: -$${Math.abs(
+          userBalance
+        )}`}</div>
+      ) : (
+        <div className="trip-subbar">{`Trip balance: +$${userBalance}`}</div>
+      )}
       <div className="trip-subbar">
         Trip members:
         <div className="trip-members">

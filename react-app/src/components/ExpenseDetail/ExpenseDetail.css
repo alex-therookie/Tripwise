@@ -28,8 +28,9 @@
   z-index: 2;
 }
 
-.close-exp {
-  margin: 10px 5px;
+.close-exp,
+.settle-exp {
+  margin: 3px 5px;
 }
 
 .exp-detail-header {
