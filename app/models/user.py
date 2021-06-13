@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
 
+  expenses = db.relationship("Expense", backref="user", lazy="select")
   comments = db.relationship("Comment", backref="user", lazy="select")
   user_expenses = db.relationship("ExpenseUser", backref="user", lazy="select")
   followers = db.relationship(

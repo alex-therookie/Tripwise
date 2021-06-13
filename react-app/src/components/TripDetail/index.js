@@ -34,10 +34,16 @@ const TripDetail = () => {
       <div className="trip-subbar">
         Trip members:
         <div className="trip-members">
-          {Object.entries(trip.users).map(([id, username]) => {
+          {Object.entries(trip.users).map(([id, username], index, array) => {
+            if (index === array.length - 1)
+              return (
+                <span key={id} className="trip-member">
+                  {`${username}`}
+                </span>
+              );
             return (
               <span key={id} className="trip-member">
-                {username}
+                {`${username},`}
               </span>
             );
           })}

@@ -7,6 +7,7 @@ class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(30), nullable=False)
     amount = db.Column(db.Numeric(10,2), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     photoUrl = db.Column(db.String(500), nullable=True)
     tripId = db.Column(db.Integer, db.ForeignKey('trips.id'), nullable=False)
     activityId = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=True)
@@ -22,6 +23,7 @@ class Expense(db.Model):
             "amount": str(self.amount),
             "photoUrl": self.photoUrl,
             "tripId": self.tripId,
+            "userId": self.userId,
             "activityId": self.activityId,
             "createdAt": self.createdAt,
             "comments": [comment.to_dict() for comment in self.comments],
