@@ -64,7 +64,7 @@ export const postTrip = (name, photoUrl, members) => async (dispatch) => {
 export const postActivity =
   ({ name, photoUrl, tripId, description, date }) =>
   async (dispatch) => {
-    date = new Date(date).toDateString();
+    // date = new Date(date).toDateString();
     const res = await fetch(`/api/activities/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

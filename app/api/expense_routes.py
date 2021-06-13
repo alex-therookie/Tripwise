@@ -14,6 +14,7 @@ def create_expenses():
         amount=data['amount'],
         tripId=data["tripId"],
         activityId=data["activityId"],
+        userId=data["userId"],
         )
 
     db.session.add(expense)
@@ -29,9 +30,7 @@ def create_expenses():
 
     db.session.commit()
 
-    expense_dic = expense.to_dict()
-    expense_dic["userId"] = data["userId"]
-    return expense_dic
+    return expense.to_dict()
 
 
 @expense_routes.route("/<id>", methods=['DELETE'])

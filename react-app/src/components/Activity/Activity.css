@@ -46,7 +46,7 @@
   animation-name: open;
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 @keyframes open {
@@ -77,6 +77,9 @@
 .activity-facts h4,
 .activity-facts h5 {
   color: #333;
+}
+.activity-facts {
+  line-height: 18px;
 }
 
 .activity-dropdown-detail {
