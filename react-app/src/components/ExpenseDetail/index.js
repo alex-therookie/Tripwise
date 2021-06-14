@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import SettleUpFormModal from "../SettleUpFormModal";
 import "./ExpenseDetail.css";
 
 const ExpenseDetail = ({ setShowExpense, showExpense }) => {
@@ -12,8 +13,8 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
     setShowExpense(false);
   };
 
-  const handleSettle = (e) => {
-    setShowExpense(false);
+  const handleSettle = async (e) => {
+    // const balance = await fetch(`/api/`)
   };
 
   if (!expense) return null;
@@ -51,14 +52,7 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
           })}
         </div>
       </div>
-      {user.id !== expense.userId && (
-        <button
-          className="settle-exp btn btn-small btn-orange"
-          onClick={handleSettle}
-        >
-          Settle Up
-        </button>
-      )}
+      {user.id !== expense.userId && <SettleUpFormModal expense={expense} />}
       <button
         className="close-exp btn btn-small btn-green"
         onClick={handleClose}

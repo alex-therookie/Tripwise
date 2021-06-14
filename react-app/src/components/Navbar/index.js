@@ -51,7 +51,7 @@ const NavBar = () => {
           </>
         ) : (
           <>
-            <li className="nav-profile nav-menu-item">Profile</li>
+            <li className="nav-profile nav-menu-item">{user.username}</li>
             <li>
               <LogoutButton />
             </li>
