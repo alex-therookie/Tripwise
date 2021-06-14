@@ -31,7 +31,9 @@ const TripDetail = () => {
         paid += parseFloat(expenses[key].amount);
         console.log("PAID ", paid);
       } else {
-        owes += parseFloat(expenses[key].expense_users[user.id].balance);
+        if (expenses[key].expense_users[user.id]) {
+          owes += parseFloat(expenses[key].expense_users[user.id].balance);
+        }
         console.log("OWES ", owes);
       }
     }

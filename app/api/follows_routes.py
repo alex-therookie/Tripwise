@@ -11,11 +11,9 @@ def follow():
     data = request.json
     user_email = data["email"]
     user_name = data["username"]
-    curr_user = User.query.filter(User.id == 8).first()
+    curr_user = User.query.filter(User.id == current_user.id).first()
     followedUser = User.query.filter((User.email == user_email) | (User.username == user_name)).first()
     followedUser.followers.append(curr_user)
-    curr_user.follows.append(followedUser)
-    print("FIRENDSSSSSSSSSSS ", curr_user.follows)
 
     db.session.add(followedUser)
     db.session.add(curr_user)
