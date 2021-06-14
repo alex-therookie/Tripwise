@@ -51,7 +51,7 @@ def delete_expense(id):
 def update_expense_user(expId):
     data = request.json
     curr_user = current_user.to_dict()
-    user_expense = ExpenseUser.query.filter(ExpenseUser.userId == curr_user["id"] and ExpenseUser.expenseId == expId).first()
+    user_expense = ExpenseUser.query.filter(ExpenseUser.userId == curr_user["id"], ExpenseUser.expenseId == expId).first()
     total = float(user_expense.balance) + float(data["payment"])
     if total >= 0:
         user_expense.balance = 0
