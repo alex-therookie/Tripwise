@@ -4,9 +4,9 @@ import TripSummary from "../TripSummary/index";
 import "./Trips.css";
 
 const Trips = () => {
-  const trips = useSelector((state) => state.session.user.trips);
+  const trips = useSelector((state) => state.session.user?.trips);
 
-  if (!trips.length) return null;
+  if (!trips || !trips.length) return null;
 
   return (
     <div className="trips-container">
