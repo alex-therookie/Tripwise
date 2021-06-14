@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Dashboard from "./components/Dashboard";
 import TripDetail from "./components/TripDetail";
+import Friends from "./components/Friends";
 import CreateTrip from "./components/CreateTrip";
 import { authenticate } from "./store/session";
 
@@ -52,6 +53,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/new-trip" exact={true}>
           <CreateTrip />
+        </ProtectedRoute>
+        <ProtectedRoute path="/friends" exact={true}>
+          <Friends />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -72,7 +72,11 @@ const NavBar = () => {
         <li className="nav-drawer-links">Dashboard</li>
         <li className="nav-drawer-links">Expenses</li>
         <li className="nav-drawer-links">Trips</li>
-        <li className="nav-drawer-links">Friends</li>
+        <li className="nav-drawer-links">
+          <NavLink className="friends" to={"/friends"}>
+            Friends
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

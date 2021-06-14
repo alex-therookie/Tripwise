@@ -109,3 +109,8 @@
   border-left: 5px solid #ffbd59;
   background-color: rgba(221, 221, 221, 0.76);
 }
+
+.friends {
+  text-decoration: none;
+  color: #838383;
+}

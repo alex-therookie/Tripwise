@@ -12,6 +12,7 @@ from .api.trip_routes import trip_routes
 from .api.expense_routes import expense_routes
 from .api.activity_routes import activity_routes
 from .api.comment_routes import comment_routes
+from .api.follows_routes import follows_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(trip_routes, url_prefix='/api/trips')
 app.register_blueprint(expense_routes, url_prefix='/api/expenses')
+app.register_blueprint(follows_routes, url_prefix='/api/follows')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
 app.register_blueprint(activity_routes, url_prefix='/api/activities')
 db.init_app(app)
