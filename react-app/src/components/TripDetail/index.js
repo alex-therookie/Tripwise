@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getTrip, getExpenses } from "../../store/trip";
+import { deleteTrip } from "../../store/trip";
 import Activity from "../Activity";
 import ActivityFormModal from "../ActivityFormModal";
 import "./TripDetail.css";
 
 const TripDetail = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { tripId } = useParams();
   const trip = useSelector((state) => state.trip[tripId]);
   const activities = useSelector((state) => state.trip[tripId]?.activities);
@@ -21,6 +24,11 @@ const TripDetail = () => {
     dispatch(getTrip(tripId));
     dispatch(getExpenses(tripId));
   }, [dispatch]);
+
+  const handleDelete = async () => {
+    dispatch(deleteTrip(tripId));
+    history.push("/");
+  };
 
   useEffect(() => {
     let owes = 0;
@@ -48,12 +56,17 @@ const TripDetail = () => {
     <div className="trip-detail-container">
       <div className="trip-topbar">
         <div className="img-name-wrapper">
-          <div className="trip-img">photo</div>
+          {/* <div className="trip-img">photo</div> */}
           <h2 className="trip-name">{trip.name}</h2>
         </div>
         <div className="trip-btn-wrapper">
           <ActivityFormModal tripId={trip.id} />
-          <button className="btn btn-large btn-orange">Settle up</button>
+          {trip.userId == user.id && (
+            <button onClick={handleDelete} className="btn btn-large btn-orange">
+              Delete
+            </button>
+          )}
+          {/* <button className="btn btn-large btn-orange">Settle up</button> */}
         </div>
       </div>
       {userBalance < 0 ? (

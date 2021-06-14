@@ -41,7 +41,7 @@ const ActivityForm = ({ tripId, setShowModal }) => {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <h4>Add a picture (optional)</h4>
           <input
             className="photoUrl-input"
@@ -51,7 +51,7 @@ const ActivityForm = ({ tripId, setShowModal }) => {
             placeholder="Photo URL"
             onChange={(e) => setPhotoUrl(e.target.value)}
           />
-        </div>
+        </div> */}
         <div>
           <h4>Add a description...</h4>
           <textarea

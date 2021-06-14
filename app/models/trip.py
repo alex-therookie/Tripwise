@@ -11,7 +11,7 @@ class Trip(db.Model):
 
     activities = db.relationship("Activity", backref="trip", lazy="dynamic", cascade="all, delete")
 
-    users = db.relationship("User", secondary=trip_users, back_populates="trips", passive_deletes=True)
+    users = db.relationship("User", secondary=trip_users, back_populates="trips")
 
     def to_dict(self):
         return {

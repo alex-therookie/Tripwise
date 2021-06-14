@@ -22,7 +22,7 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
       <div className="exp-detail-header">Expense</div>
       <div className="exp-detail-container">
         <div className="exp-detail-topbar">
-          <div className="exp-receipt">photo</div>
+          {/* <div className="exp-receipt">photo</div> */}
           <div className="exp-desc-amount">
             <div className="exp-desc">{expense.description}</div>
             <div className="exp-amount">{`$${expense.amount}`}</div>

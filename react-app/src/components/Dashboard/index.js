@@ -13,11 +13,12 @@ const Dashboard = () => {
           <NavLink to={"/new-trip"}>
             <button className="btn btn-large btn-green">Plan a trip</button>
           </NavLink>
-          <button className="btn btn-large btn-orange">Settle up</button>
+          {/* <button className="btn btn-large btn-orange">Settle up</button> */}
         </div>
       </div>
       <div className="dashboard-balances">
-        <div>
+        <h3>Your trips</h3>
+        {/* <div>
           <span>total balance</span>
           <br />
           <span id="total-balance">$66.93</span>
@@ -31,7 +32,7 @@ const Dashboard = () => {
           <span>you are owed</span>
           <br />
           <span id="you-are-owed">$56.04</span>
-        </div>
+        </div> */}
       </div>
       <Trips />
     </div>

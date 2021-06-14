@@ -2,6 +2,7 @@
 const LOAD_TRIP = "trip/LOAD_TRIP";
 const LOAD_EXPENSES = "trip/LOAD_EXPENSES";
 const ADD_TRIP = "trip/ADD_TRIP";
+const REMOVE_TRIP = "trip/REMOVE_TRIP";
 const ADD_ACTIVITY = "trip/ADD_ACTIVITY";
 const ADD_PAYMENT = "trip/ADD_PAYMENT";
 const ADD_EXPENSE = "trip/ADD_EXPENSE";
@@ -28,8 +29,14 @@ export const addTrip = (trip) => {
   };
 };
 
+export const removeTrip = (trip) => {
+  return {
+    type: ADD_TRIP,
+    trip,
+  };
+};
+
 export const addPayment = (userExp) => {
-  console.log("INSIDE ACTION =====> ", userExp);
   return {
     type: ADD_PAYMENT,
     userExp,
@@ -63,6 +70,18 @@ export const getTrip = (tripId) => async (dispatch) => {
     const trip = await res.json();
     console.log(trip);
     dispatch(loadTrip(trip));
+  }
+};
+
+export const deleteTrip = (tripId) => async (dispatch) => {
+  const res = await fetch(`/api/trips/${tripId}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    const trip = await res.json();
+    console.log(trip);
+    dispatch(removeTrip(trip));
+    return trip;
   }
 };
 
@@ -154,6 +173,11 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.trip.id]: action.trip,
+      };
+    }
+    case REMOVE_TRIP: {
+      return {
+        ...state,
       };
     }
 

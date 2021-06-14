@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, Response
 from app.models import Trip, Activity, User
 from app import db
 from flask_login import current_user
@@ -32,3 +32,15 @@ def create_trip():
     db.session.commit()
 
     return trip.to_dict_detail()
+
+@trip_routes.route('/<id>', methods=['DELETE'])
+def delete_trip(id):
+    if current_user.is_authenticated:
+        trip = Trip.query.get(id)
+        print("THIS IS TRIP =====> ", trip)
+        trip_user = str(trip.userId)
+        if current_user.get_id() == trip_user:
+            db.session.delete(trip)
+            db.session.commit()
+            return trip.to_dict(), 202
+        return Response("User is not authorized to Delete this review", 401)
