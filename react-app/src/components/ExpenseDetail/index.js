@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { deleteExpense } from "../../store/trip";
 import SettleUpFormModal from "../SettleUpFormModal";
 import "./ExpenseDetail.css";
 
 const ExpenseDetail = ({ setShowExpense, showExpense }) => {
   const { tripId } = useParams();
+  const dispatch = useDispatch();
   const members = useSelector((state) => state.trip[tripId].users);
   const expense = useSelector((state) => state.trip.expenseDetail);
   const user = useSelector((state) => state.session.user);
   const handleClose = (e) => {
     setShowExpense(false);
+  };
+
+  const handleDelete = async () => {
+    dispatch(deleteExpense(expense.id));
+    window.location.reload();
   };
 
   if (!expense) return null;
@@ -48,7 +55,16 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
           })}
         </div>
       </div>
-      {user.id !== expense.userId && <SettleUpFormModal expense={expense} />}
+      {user.id !== expense.userId ? (
+        <SettleUpFormModal expense={expense} />
+      ) : (
+        <button
+          className="close-exp btn btn-small btn-orange"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+      )}
       <button
         className="close-exp btn btn-small btn-green"
         onClick={handleClose}

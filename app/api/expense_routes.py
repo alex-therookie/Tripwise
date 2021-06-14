@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, Response
 from app.models import Expense, ExpenseUser
 from flask_login import current_user
 from app import db
@@ -38,13 +38,6 @@ def get_expenses(tripId):
     expenses = Expense.query.filter(Expense.tripId == tripId).all()
     return {"expenses": [expense.to_dict() for expense in expenses] }
 
-
-@expense_routes.route("/<id>", methods=['DELETE'])
-def delete_expense(id):
-    expense = Expense.query.get(id)
-    db.session.delete(expense)
-    db.session.commit()
-
     return {}, 204
 #TODO Chnage this to expense_user route
 @expense_routes.route("/<int:expId>", methods=['PUT'])
@@ -61,3 +54,15 @@ def update_expense_user(expId):
     db.session.commit()
 
     return user_expense.to_dict()
+
+@expense_routes.route('/<id>', methods=['DELETE'])
+def delete_expense(id):
+    if current_user.is_authenticated:
+        expense = Expense.query.get(id)
+        print("THIS IS TRIP =====> ", expense)
+        expense_user = str(expense.userId)
+        if current_user.get_id() == expense_user:
+            db.session.delete(expense)
+            db.session.commit()
+            return expense.to_dict(), 202
+        return Response("User is not authorized to Delete this review", 401)

@@ -14,7 +14,7 @@ class Expense(db.Model):
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
 
     comments = db.relationship("Comment", backref="expense", lazy="joined")
-    expense_users = db.relationship("ExpenseUser", backref="expense", lazy="select")
+    expense_users = db.relationship("ExpenseUser", backref="expense", lazy="select", cascade="all, delete")
 
     def to_dict(self):
         return {

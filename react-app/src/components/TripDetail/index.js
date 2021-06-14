@@ -72,7 +72,7 @@ const TripDetail = () => {
       {userBalance < 0 ? (
         <div className="trip-subbar">{`Trip balance: -$${Math.abs(
           userBalance
-        )}`}</div>
+        ).toFixed(2)}`}</div>
       ) : (
         <div className="trip-subbar">{`Trip balance: +$${userBalance}`}</div>
       )}

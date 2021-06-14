@@ -3,6 +3,7 @@ const LOAD_TRIP = "trip/LOAD_TRIP";
 const LOAD_EXPENSES = "trip/LOAD_EXPENSES";
 const ADD_TRIP = "trip/ADD_TRIP";
 const REMOVE_TRIP = "trip/REMOVE_TRIP";
+const REMOVE_EXPENSE = "trip/REMOVE_EXPENSE";
 const ADD_ACTIVITY = "trip/ADD_ACTIVITY";
 const ADD_PAYMENT = "trip/ADD_PAYMENT";
 const ADD_EXPENSE = "trip/ADD_EXPENSE";
@@ -31,8 +32,15 @@ export const addTrip = (trip) => {
 
 export const removeTrip = (trip) => {
   return {
-    type: ADD_TRIP,
+    type: REMOVE_TRIP,
     trip,
+  };
+};
+
+export const removeExpense = (expense) => {
+  return {
+    type: REMOVE_EXPENSE,
+    expense,
   };
 };
 
@@ -82,6 +90,18 @@ export const deleteTrip = (tripId) => async (dispatch) => {
     console.log(trip);
     dispatch(removeTrip(trip));
     return trip;
+  }
+};
+
+export const deleteExpense = (expenseId) => async (dispatch) => {
+  const res = await fetch(`/api/expenses/${expenseId}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    const expense = await res.json();
+    console.log("EXPENSE DELETE ====> ", expense);
+    dispatch(removeExpense(expense));
+    return expense;
   }
 };
 
