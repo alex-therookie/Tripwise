@@ -90,13 +90,13 @@ const SignUpForm = () => {
               required={true}
             ></input>
           </div>
-          <button type="submit" class="btn signup-btn">
+          <button type="submit" className="btn signup-btn">
             Sign Up
           </button>
         </div>
       </form>
-      <button onClick={demoLogin} type="submit" class="btn signup-btn">
-        Demo
+      <button onClick={demoLogin} className="btn signup-btn demo-login">
+        Demo user
       </button>
     </div>
   );

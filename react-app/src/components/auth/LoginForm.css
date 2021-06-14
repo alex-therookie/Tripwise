@@ -72,3 +72,9 @@ form {
   width: 100%;
   font-size: 16px;
 }
+
+.demo-login {
+  background-color: #ffbd59;
+  text-shadow: 0 -1px 0 #ffb649;
+  width: 360px;
+}
