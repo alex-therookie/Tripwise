@@ -6,10 +6,8 @@ import "./ExpenseSummary.css";
 
 const ExpenseSummary = ({ expense, expenseClick }) => {
   const dispatch = useDispatch();
-  const currUser = useSelector((state) => state.session.user);
-  const expUser = expense.expense_users.find(
-    (user) => user.userId === currUser.id
-  );
+  const user = useSelector((state) => state.session.user);
+  const expUser = expense.expense_users[user.id];
 
   const handleClick = () => {
     dispatch(setExpenseDetail(expense));
@@ -21,8 +19,7 @@ const ExpenseSummary = ({ expense, expenseClick }) => {
     <>
       <div className="exp-summary-container" onClick={handleClick}>
         <div className="exp-summary desc">{expense.description}</div>
-        <div className="exp-summary amount">{`$${expense.amount}`}</div>
-        <div className="exp-summary balance">{`$${expUser.balance}`}</div>
+        <div className="exp-summary amount">{`Cost: $${expense.amount}`}</div>
       </div>
     </>
   );

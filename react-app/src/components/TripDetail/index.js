@@ -28,17 +28,16 @@ const TripDetail = () => {
 
     for (const key in expenses) {
       if (expenses[key].userId === user.id) {
-        paid += expenses[key].amount;
+        paid += parseFloat(expenses[key].amount);
+        console.log("PAID ", paid);
       } else {
-        for (const expUser of expenses[key].expense_users) {
-          if (expUser.userId === user.id) {
-            owes += Math.abs(expUser.balance);
-          }
-        }
+        owes += parseFloat(expenses[key].expense_users[user.id].balance);
+        console.log("OWES ", owes);
       }
     }
 
-    setUserBalance(paid - owes);
+    let total = paid + owes;
+    setUserBalance(total);
   }, [userBalance, expenses]);
 
   if (!trip) return null;

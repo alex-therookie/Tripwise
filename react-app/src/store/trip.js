@@ -3,6 +3,7 @@ const LOAD_TRIP = "trip/LOAD_TRIP";
 const LOAD_EXPENSES = "trip/LOAD_EXPENSES";
 const ADD_TRIP = "trip/ADD_TRIP";
 const ADD_ACTIVITY = "trip/ADD_ACTIVITY";
+const ADD_PAYMENT = "trip/ADD_PAYMENT";
 const ADD_EXPENSE = "trip/ADD_EXPENSE";
 const SET_EXPENSE = "trip/SET_EXPENSE";
 
@@ -24,6 +25,14 @@ export const addTrip = (trip) => {
   return {
     type: ADD_TRIP,
     trip,
+  };
+};
+
+export const addPayment = (userExp) => {
+  console.log("INSIDE ACTION =====> ", userExp);
+  return {
+    type: ADD_PAYMENT,
+    userExp,
   };
 };
 
@@ -77,6 +86,21 @@ export const postTrip = (name, photoUrl, members) => async (dispatch) => {
   dispatch(addTrip(tripData));
   return tripData;
 };
+
+export const putPayment =
+  ({ payment, expenseId }) =>
+  async (dispatch) => {
+    console.log("STORE PAYMENT ====> ", expenseId);
+    const res = await fetch(`/api/expenses/${expenseId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ payment }),
+    });
+    const userExpData = await res.json();
+    console.log("USER EXP =====> ", userExpData);
+    dispatch(addPayment(userExpData));
+    return userExpData;
+  };
 
 export const postActivity =
   ({ name, photoUrl, tripId, description, date }) =>
@@ -148,6 +172,26 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.trip.id]: action.trip,
+      };
+    }
+
+    case ADD_PAYMENT: {
+      console.log("INSIDE CASE ====> ", action);
+      const expId = action.userExp.expenseId;
+      const userId = action.userExp.userId;
+
+      return {
+        ...state,
+        expenses: {
+          ...state.expenses,
+          [expId]: {
+            ...state.expenses[expId],
+            expense_users: {
+              ...state.expenses[expId].expense_users,
+              [userId]: action.userExp,
+            },
+          },
+        },
       };
     }
 

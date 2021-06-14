@@ -10,7 +10,7 @@ const Activity = ({ activity }) => {
   const activityClick = () => {
     setOpenActivity(!openActivity);
   };
-  console.log(Object.getPrototypeOf(activity.date));
+
   const expenseClick = () => {
     setShowExpense(true);
   };
@@ -26,7 +26,6 @@ const Activity = ({ activity }) => {
         <div className="activity-name activity-details">
           <h3>{activity.name}</h3>
         </div>
-        <div className="activity-balance activity-details">$120.00</div>
       </div>
       <div
         className={

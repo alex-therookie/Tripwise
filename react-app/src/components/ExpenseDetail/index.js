@@ -13,10 +13,6 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
     setShowExpense(false);
   };
 
-  const handleSettle = async (e) => {
-    // const balance = await fetch(`/api/`)
-  };
-
   if (!expense) return null;
 
   console.log(expense);
@@ -33,7 +29,7 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
           </div>
         </div>
         <div className="exp-detail-users">
-          {expense.expense_users.map((expUser) => {
+          {Object.values(expense.expense_users).map((expUser) => {
             if (expUser.userId === expense.userId) {
               return (
                 <div className="exp-detail-user">{`${

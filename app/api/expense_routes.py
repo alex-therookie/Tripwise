@@ -47,13 +47,17 @@ def delete_expense(id):
 
     return {}, 204
 #TODO Chnage this to expense_user route
-@expense_routes.route("/", methods=['PUT'])
-def update_expense_user():
+@expense_routes.route("/<int:expId>", methods=['PUT'])
+def update_expense_user(expId):
     data = request.json
     curr_user = current_user.to_dict()
-    user_expense = ExpenseUser.query.filter(ExpenseUser.userId == curr_user["id"]).first()
-    total = float(user_expense.balance) + float(data["deposit"])
-    user_expense.balance = total
+    user_expense = ExpenseUser.query.filter(ExpenseUser.userId == curr_user["id"] and ExpenseUser.expenseId == expId).first()
+    total = float(user_expense.balance) + float(data["payment"])
+    if total >= 0:
+        user_expense.balance = 0
+    else:
+        print("NOT BIGER ZERO =====> ", total)
+        user_expense.balance = total
     db.session.commit()
 
     return user_expense.to_dict()

@@ -27,5 +27,5 @@ class Expense(db.Model):
             "activityId": self.activityId,
             "createdAt": self.createdAt,
             "comments": [comment.to_dict() for comment in self.comments],
-            "expense_users": [expense_user.to_dict() for expense_user in self.expense_users]
+            "expense_users": {expense_user.userId: expense_user.to_dict() for expense_user in self.expense_users}
         }
