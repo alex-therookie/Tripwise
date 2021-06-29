@@ -80,3 +80,33 @@
   padding: 5px;
   border-bottom: 1px solid #ddd;
 }
+
+.add-comment textarea {
+  width: 200px;
+  margin-bottom: 8px;
+  height: auto;
+  max-width: 240px;
+  max-height: 100px;
+  overflow: auto;
+  padding: 4px;
+}
+
+.add-comment textarea:focus {
+  outline: none !important;
+  box-shadow: 0 0 4px #94c7fd;
+}
+
+.add-comment button {
+  font-size: 12px;
+  padding: 2px 4px;
+  background: #ff652f;
+  color: #fff;
+  text-shadow: 0 -1px 0 #c83400;
+  width: 50px;
+}
+
+.add-comment {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+}

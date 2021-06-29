@@ -61,6 +61,10 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
         {expense.comments.map((comment) => (
           <Comment comment={comment} />
         ))}
+        <div className="add-comment">
+          <textarea placeholder="Add a comment"></textarea>
+          <button className="btn btn-small btn-orange">Post</button>
+        </div>
       </div>
       {user.id !== expense.userId ? (
         <SettleUpFormModal expense={expense} />

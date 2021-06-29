@@ -11,7 +11,6 @@ const Comment = ({ comment }) => {
         <div className="comment-user">{user.username} says: </div>
         {comment.text}
       </div>
-      <div className="add-comment"></div>
     </>
   );
 };
