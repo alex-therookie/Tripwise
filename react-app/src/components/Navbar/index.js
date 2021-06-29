@@ -12,12 +12,12 @@ const NavBar = () => {
   return (
     <nav className="nav-container">
       <div className="nav-menu-logo">
-        {/* <div
+        <div
           className="nav-menu-icon"
           onClick={() => setMenuClicked(!menuClicked)}
         >
           <i className={menuClicked ? "fas fa-times" : "fas fa-bars"}></i>
-        </div> */}
+        </div>
         <img className="nav-img-logo" src={tripwiseLogo} />
         <div className="nav-logo">
           <Link to="/" exact={true} style={{ textDecoration: "none" }}>
@@ -68,7 +68,7 @@ const NavBar = () => {
           </NavLink>
         </li> */}
       </ul>
-      {/* <ul className={menuClicked ? "nav-drawer active" : "nav-drawer"}>
+      <ul className={menuClicked ? "nav-drawer active" : "nav-drawer"}>
         <li className="nav-drawer-links">Dashboard</li>
         <li className="nav-drawer-links">Expenses</li>
         <li className="nav-drawer-links">Trips</li>
@@ -77,7 +77,7 @@ const NavBar = () => {
             Friends
           </NavLink>
         </li>
-      </ul> */}
+      </ul>
     </nav>
   );
 };
