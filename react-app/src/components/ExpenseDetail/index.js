@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { deleteExpense } from "../../store/trip";
 import SettleUpFormModal from "../SettleUpFormModal";
-import Comment from "../Comment";
+import CommentsContainer from "../CommentsContainer";
 import "./ExpenseDetail.css";
 
 const ExpenseDetail = ({ setShowExpense, showExpense }) => {
@@ -56,16 +56,7 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
           })}
         </div>
       </div>
-      <div className="comments-container">
-        <h4>Comments</h4>
-        {expense.comments.map((comment) => (
-          <Comment comment={comment} />
-        ))}
-        <div className="add-comment">
-          <textarea placeholder="Add a comment"></textarea>
-          <button className="btn btn-small btn-orange">Post</button>
-        </div>
-      </div>
+      <CommentsContainer comments={expense.comments} />
       {user.id !== expense.userId ? (
         <SettleUpFormModal expense={expense} />
       ) : (
