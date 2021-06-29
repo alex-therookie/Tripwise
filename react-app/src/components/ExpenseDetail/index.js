@@ -56,7 +56,9 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
           })}
         </div>
       </div>
-      <Comment />
+      <div className="comments-container">
+        <h4>Comments</h4>
+      </div>
       {user.id !== expense.userId ? (
         <SettleUpFormModal expense={expense} />
       ) : (
