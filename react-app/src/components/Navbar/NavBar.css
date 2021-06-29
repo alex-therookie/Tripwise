@@ -4,12 +4,18 @@
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  overflow: hidden;
+  top: 0px;
+  /* overflow: hidden; */
   height: 75px;
+  width: 100%;
   min-width: 581px;
   box-shadow: 1px 1px 3px gray;
+  z-index: 1;
 }
 
+/* .nav-container {
+  position: relative;
+} */
 .nav-logo h2 {
   padding: 7px;
   color: white;
@@ -56,10 +62,6 @@
 
 .nav-menu-item {
   text-decoration: none;
-}
-
-.nav-container {
-  position: relative;
 }
 
 .nav-drawer {

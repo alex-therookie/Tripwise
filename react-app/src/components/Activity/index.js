@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ExpenseFormModal from "../ExpenseFormModal";
 import ExpenseSummary from "../ExpenseSummary";
 import ExpenseDetail from "../ExpenseDetail";
-import Comment from "../Comment";
 import "./Activity.css";
 
 const Activity = ({ activity }) => {

@@ -53,51 +53,56 @@ const TripDetail = () => {
   if (!trip) return null;
 
   return (
-    <div className="trip-detail-container">
-      <div className="trip-topbar">
-        <div className="img-name-wrapper">
-          {/* <div className="trip-img">photo</div> */}
-          <h2 className="trip-name">{trip.name}</h2>
+    <div className="trip-page-container">
+      <div className="trip-detail-container">
+        <div className="trip-topbar">
+          <div className="img-name-wrapper">
+            {/* <div className="trip-img">photo</div> */}
+            <h2 className="trip-name">{trip.name}</h2>
+          </div>
+          <div className="trip-btn-wrapper">
+            <ActivityFormModal tripId={trip.id} />
+            {trip.userId == user.id && (
+              <button
+                onClick={handleDelete}
+                className="btn btn-large btn-orange"
+              >
+                Delete
+              </button>
+            )}
+            {/* <button className="btn btn-large btn-orange">Settle up</button> */}
+          </div>
         </div>
-        <div className="trip-btn-wrapper">
-          <ActivityFormModal tripId={trip.id} />
-          {trip.userId == user.id && (
-            <button onClick={handleDelete} className="btn btn-large btn-orange">
-              Delete
-            </button>
-          )}
-          {/* <button className="btn btn-large btn-orange">Settle up</button> */}
-        </div>
-      </div>
-      {userBalance < 0 ? (
-        <div className="trip-subbar">{`Trip balance: -$${Math.abs(
-          userBalance
-        ).toFixed(2)}`}</div>
-      ) : (
-        <div className="trip-subbar">{`Trip balance: +$${userBalance}`}</div>
-      )}
-      <div className="trip-subbar">
-        Trip members:
-        <div className="trip-members">
-          {Object.entries(trip.users).map(([id, username], index, array) => {
-            if (index === array.length - 1)
+        {userBalance < 0 ? (
+          <div className="trip-subbar">{`Trip balance: -$${Math.abs(
+            userBalance
+          ).toFixed(2)}`}</div>
+        ) : (
+          <div className="trip-subbar">{`Trip balance: +$${userBalance}`}</div>
+        )}
+        <div className="trip-subbar">
+          Trip members:
+          <div className="trip-members">
+            {Object.entries(trip.users).map(([id, username], index, array) => {
+              if (index === array.length - 1)
+                return (
+                  <span key={id} className="trip-member">
+                    {`${username}`}
+                  </span>
+                );
               return (
                 <span key={id} className="trip-member">
-                  {`${username}`}
+                  {`${username},`}
                 </span>
               );
-            return (
-              <span key={id} className="trip-member">
-                {`${username},`}
-              </span>
-            );
-          })}
+            })}
+          </div>
         </div>
-      </div>
-      <div className="activities-wrapper">
-        {Object.entries(activities).map(([id, activity]) => (
-          <Activity key={id} activity={activity} />
-        ))}
+        <div className="activities-wrapper">
+          {Object.entries(activities).map(([id, activity]) => (
+            <Activity key={id} activity={activity} />
+          ))}
+        </div>
       </div>
     </div>
   );

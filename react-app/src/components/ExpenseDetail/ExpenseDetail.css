@@ -6,7 +6,7 @@
   min-width: 250px;
   max-width: 300px;
   height: calc(100vh - 75px);
-  position: absolute;
+  position: fixed;
   top: 76px;
   right: -100%;
   opacity: 1;
