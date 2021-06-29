@@ -1,0 +1,8 @@
+.comment {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 6px 8px;
+  background: #fff;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}

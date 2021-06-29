@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { deleteExpense } from "../../store/trip";
 import SettleUpFormModal from "../SettleUpFormModal";
+import Comment from "../Comment";
 import "./ExpenseDetail.css";
 
 const ExpenseDetail = ({ setShowExpense, showExpense }) => {
@@ -55,6 +56,7 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
           })}
         </div>
       </div>
+      <Comment />
       {user.id !== expense.userId ? (
         <SettleUpFormModal expense={expense} />
       ) : (
