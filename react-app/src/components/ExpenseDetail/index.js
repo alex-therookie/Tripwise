@@ -59,7 +59,7 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
       <CommentsContainer
         comments={expense.comments}
         expense={expense}
-        user={user}
+        members={members}
       />
       {user.id !== expense.userId ? (
         <SettleUpFormModal expense={expense} />

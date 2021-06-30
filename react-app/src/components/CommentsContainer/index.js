@@ -4,10 +4,9 @@ import Comment from "../Comment";
 import "./CommentsContainer.css";
 import { postComment } from "../../store/trip";
 
-const CommentsContainer = ({ comments, expense }) => {
+const CommentsContainer = ({ comments, expense, members }) => {
   const dispatch = useDispatch();
   const [userComment, setUserComment] = useState("");
-  //   const user = useSelector((state) => state.session.user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +17,7 @@ const CommentsContainer = ({ comments, expense }) => {
     <div className="comments-container">
       <h4>Comments</h4>
       {comments.map((comment) => (
-        <Comment comment={comment} />
+        <Comment comment={comment} members={members} />
       ))}
       <div className="add-comment">
         <form className="comment-form" onSubmit={handleSubmit}>
