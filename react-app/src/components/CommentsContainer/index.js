@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Comment from "../Comment";
 import "./CommentsContainer.css";
+import { postComment } from "../../store/trip";
 
-const CommentsContainer = ({ comments }) => {
+const CommentsContainer = ({ comments, expense }) => {
   const dispatch = useDispatch();
   const [userComment, setUserComment] = useState("");
+  //   const user = useSelector((state) => state.session.user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(postComment());
-    console.log(userComment);
+    dispatch(postComment(userComment, expense.id));
+    setUserComment("");
   };
   return (
     <div className="comments-container">

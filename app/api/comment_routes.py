@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from app.models import Comment
+from flask_login import current_user
 from app import db
 
 comment_routes = Blueprint('comments', __name__)
@@ -11,7 +12,7 @@ def create_comments():
     comment = Comment(
         text=data['text'],
         expenseId=data["expenseId"],
-        userId=data["userId"],          #Change for current userId
+        userId=current_user.get_id(),          #Change for current userId
     )
 
     db.session.add(comment)

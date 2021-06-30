@@ -60,8 +60,8 @@ def delete_expense(id):
     if current_user.is_authenticated:
         expense = Expense.query.get(id)
         print("THIS IS TRIP =====> ", expense)
-        expense_user = str(expense.userId)
-        if current_user.get_id() == expense_user:
+        expense_user_id = str(expense.userId)
+        if current_user.get_id() == expense_user_id:
             db.session.delete(expense)
             db.session.commit()
             return expense.to_dict(), 202

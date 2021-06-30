@@ -134,11 +134,11 @@ export const postTrip = (name, photoUrl, members) => async (dispatch) => {
   return tripData;
 };
 
-export const postComment = (text, userId, expenseId) => async (dispatch) => {
+export const postComment = (text, expenseId) => async (dispatch) => {
   const res = await fetch(`/api/comments/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text, userId, expenseId }),
+    body: JSON.stringify({ text, expenseId }),
   });
   const commentData = await res.json();
   dispatch(addComment(commentData));
