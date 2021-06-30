@@ -32,21 +32,26 @@ const TripDetail = () => {
 
   useEffect(() => {
     let owes = 0;
-    let paid = 0;
+    let owed = 0;
 
     for (const key in expenses) {
       if (expenses[key].userId === user.id) {
-        paid += parseFloat(expenses[key].amount);
-        console.log("PAID ", paid);
-      } else {
-        if (expenses[key].expense_users[user.id]) {
-          owes += parseFloat(expenses[key].expense_users[user.id].balance);
+        for (const expUser in expenses[key].expense_users) {
+          if (expUser !== user.id.toString()) {
+            owed += Math.abs(
+              parseFloat(expenses[key].expense_users[expUser].balance)
+            );
+          }
         }
-        console.log("OWES ", owes);
+      } else if (expenses[key].expense_users[user.id]) {
+        let owesTemp = parseFloat(
+          expenses[key].expense_users[user.id]?.balance
+        );
+        owes += isNaN(owesTemp) ? 0.0 : owesTemp;
       }
     }
 
-    let total = paid + owes;
+    let total = owed + owes;
     setUserBalance(total);
   }, [userBalance, expenses]);
 

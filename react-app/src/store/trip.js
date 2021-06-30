@@ -8,6 +8,7 @@ const ADD_ACTIVITY = "trip/ADD_ACTIVITY";
 const ADD_PAYMENT = "trip/ADD_PAYMENT";
 const ADD_EXPENSE = "trip/ADD_EXPENSE";
 const SET_EXPENSE = "trip/SET_EXPENSE";
+const ADD_COMMENT = "trip/ADD_COMMENT";
 
 export const loadTrip = (trip) => {
   return {
@@ -62,6 +63,13 @@ export const addExpense = (expense) => {
   return {
     type: ADD_EXPENSE,
     expense,
+  };
+};
+
+export const addComment = (comment) => {
+  return {
+    type: ADD_COMMENT,
+    comment,
   };
 };
 
@@ -124,6 +132,17 @@ export const postTrip = (name, photoUrl, members) => async (dispatch) => {
   const tripData = await res.json();
   dispatch(addTrip(tripData));
   return tripData;
+};
+
+export const postComment = (text, userId, expenseId) => async (dispatch) => {
+  const res = await fetch(`/api/comments/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text, userId, expenseId }),
+  });
+  const commentData = await res.json();
+  dispatch(addComment(commentData));
+  return commentData;
 };
 
 export const putPayment =
@@ -220,7 +239,6 @@ const tripReducer = (state = initialState, action) => {
     }
 
     case ADD_PAYMENT: {
-      console.log("INSIDE CASE ====> ", action);
       const expId = action.userExp.expenseId;
       const userId = action.userExp.userId;
 
@@ -272,6 +290,16 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         expenseDetail: action.expense,
+      };
+    }
+
+    case ADD_COMMENT: {
+      return {
+        ...state,
+        expenseDetail: {
+          ...state.expenseDetail,
+          comments: [...state.expenseDetail.comments, action.comment],
+        },
       };
     }
 

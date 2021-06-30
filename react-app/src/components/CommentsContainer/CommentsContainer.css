@@ -1,0 +1,38 @@
+.comments-container {
+  padding: 7px;
+}
+
+.comments-container h4 {
+  margin-bottom: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #999;
+}
+.comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form textarea {
+  width: 200px;
+  margin-bottom: 8px;
+  height: auto;
+  max-width: 240px;
+  max-height: 100px;
+  overflow: auto;
+  padding: 4px;
+}
+
+.comment-form textarea:focus {
+  outline: none !important;
+  box-shadow: 0 0 4px #94c7fd;
+}
+
+.comment-form button {
+  font-size: 12px;
+  padding: 2px 4px;
+  background: #ff652f;
+  color: #fff;
+  text-shadow: 0 -1px 0 #c83400;
+  width: 50px;
+}
