@@ -45,7 +45,11 @@ const Activity = ({ activity }) => {
         <div className="activity-expenses-container scroll scroll1">
           <div className="act-exp-header">Current expenses</div>
           {activity.expenses.map((expense) => (
-            <ExpenseSummary expense={expense} expenseClick={expenseClick} />
+            <ExpenseSummary
+              key={expense.id}
+              expense={expense}
+              expenseClick={expenseClick}
+            />
           ))}
           <ExpenseDetail
             setShowExpense={setShowExpense}
