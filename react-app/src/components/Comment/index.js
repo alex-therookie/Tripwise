@@ -13,14 +13,16 @@ const Comment = ({ comment, members }) => {
   return (
     <>
       <div className="comment">
-        <div className="comment-user">{members[comment.userId]} says: </div>
+        <div className="comment-user-del">
+          <div className="comment-user">{members[comment.userId]} says: </div>
+          {comment.userId === user.id ? (
+            <div className="comment-del" onClick={handleDelete}>
+              <i class="fas fa-times del-icon"></i>
+            </div>
+          ) : null}
+        </div>
         {comment.text}
       </div>
-      {comment.userId === user.id ? (
-        <button className="del-btn" onClick={handleDelete}>
-          Delete
-        </button>
-      ) : null}
     </>
   );
 };

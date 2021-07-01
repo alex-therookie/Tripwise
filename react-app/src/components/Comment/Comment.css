@@ -10,6 +10,16 @@
   line-height: 18px;
 }
 
+.comment-user-del {
+  display: flex;
+  justify-content: space-between;
+}
+
+.del-icon {
+  color: rgb(223, 30, 30);
+  cursor: pointer;
+}
+
 .comments-container {
   padding: 7px;
 }
