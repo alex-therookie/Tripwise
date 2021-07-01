@@ -10,7 +10,7 @@ const CommentsContainer = ({ comments, expense, members }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postComment(userComment, expense.id));
+    if (userComment) dispatch(postComment(userComment, expense.id));
     setUserComment("");
   };
   return (
