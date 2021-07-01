@@ -9,13 +9,15 @@ const ExpenseForm = ({ setShowModal, activity }) => {
   const dispatch = useDispatch();
   let currUser = useSelector((state) => state.session.user);
   currUser = { value: currUser.id, label: currUser.username };
+  const group = useSelector((state) => state.trip[activity.tripId].users);
+  const newGroup = Object.entries(group).map(([key, value]) => {
+    return { value: Number(key), label: value };
+  });
   const [description, setDescription] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [amount, setAmount] = useState("");
   const [members, setMembers] = useState([]);
-  const [loadedMembers, setLoadedMembers] = useState(false);
   const [expenseUsers, setExpenseUsers] = useState([]);
-  // const users = useSelector((state) => state.trip[tripId].users);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,31 +42,22 @@ const ExpenseForm = ({ setShowModal, activity }) => {
     };
     const expense = await dispatch(postExpense(expenseForm));
     if (expense) setShowModal(false);
-    console.log("EXPENSE_FORM ===> ", expenseForm);
   };
 
   // TODO: Make selector get only trip members not all users
   // TODO: refactor Activity.id
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/api/users/");
-      const responseData = await response.json();
-      const membersArr = responseData.users.filter(
-        (member) => currUser.value !== member.value
-      );
-      setMembers(membersArr);
-      setLoadedMembers(true);
-      setExpenseUsers([...membersArr, currUser]);
-    }
-    fetchData();
+    const membersArr = newGroup.filter(
+      (member) => currUser.value !== member.value
+    );
+    setMembers(membersArr);
+    setExpenseUsers([...membersArr, currUser]);
   }, []);
 
   const onChangeInput = (value) => {
     setExpenseUsers([...value, currUser]);
   };
-
-  if (!loadedMembers) return null;
 
   return (
     <div className="expense-form-container">
@@ -102,7 +95,7 @@ const ExpenseForm = ({ setShowModal, activity }) => {
         />
         <div>
           Split the bill with friends:
-          {loadedMembers && (
+          {members.length && (
             <Select
               defaultValue={members}
               isMulti
