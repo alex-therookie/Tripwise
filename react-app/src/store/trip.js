@@ -9,6 +9,7 @@ const ADD_PAYMENT = "trip/ADD_PAYMENT";
 const ADD_EXPENSE = "trip/ADD_EXPENSE";
 const SET_EXPENSE = "trip/SET_EXPENSE";
 const ADD_COMMENT = "trip/ADD_COMMENT";
+const REMOVE_COMMENT = "trip/REMOVE_COMMENT";
 
 export const loadTrip = (trip) => {
   return {
@@ -69,6 +70,13 @@ export const addExpense = (expense) => {
 export const addComment = (comment) => {
   return {
     type: ADD_COMMENT,
+    comment,
+  };
+};
+
+export const removeComment = (comment) => {
+  return {
+    type: REMOVE_COMMENT,
     comment,
   };
 };
@@ -143,6 +151,19 @@ export const postComment = (text, expenseId) => async (dispatch) => {
   const commentData = await res.json();
   dispatch(addComment(commentData));
   return commentData;
+};
+
+export const deleteComment = (comment) => async (dispatch) => {
+  console.log("THIS IS COMMENT ====> ", comment);
+  const res = await fetch(`/api/comments/${comment.id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId: comment.userId }),
+  });
+  console.log("THIS IS RES ====> ", res);
+  if (res.status === 204) {
+    dispatch(removeComment(comment));
+  }
 };
 
 export const putPayment =
@@ -299,6 +320,19 @@ const tripReducer = (state = initialState, action) => {
         expenseDetail: {
           ...state.expenseDetail,
           comments: [...state.expenseDetail.comments, action.comment],
+        },
+      };
+    }
+
+    case REMOVE_COMMENT: {
+      const filteredComments = state.expenseDetail.comments
+        .slice()
+        .filter((comment) => comment.id !== action.comment.id);
+      return {
+        ...state,
+        expenseDetail: {
+          ...state.expenseDetail,
+          comments: [...filteredComments],
         },
       };
     }

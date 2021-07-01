@@ -8,6 +8,7 @@ comment_routes = Blueprint('comments', __name__)
 @comment_routes.route("/", methods=["POST"])
 def create_comments():
     data = request.json
+    print("THIS IS DATA ====> ", data)
 
     comment = Comment(
         text=data['text'],
@@ -22,8 +23,10 @@ def create_comments():
 
 @comment_routes.route("/<id>", methods=['DELETE'])
 def delete_comment(id):
-    comment = Comment.query.get(id)
-    db.session.delete(comment)
-    db.session.commit()
-
-    return {}, 204
+    data = request.json
+    if str(data["userId"]) == current_user.get_id():
+        comment = Comment.query.get(id)
+        db.session.delete(comment)
+        db.session.commit()
+        return {}, 204
+    return {}
