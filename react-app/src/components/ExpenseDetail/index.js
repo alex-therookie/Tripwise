@@ -11,6 +11,7 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.trip[tripId].users);
   const expense = useSelector((state) => state.trip.expenseDetail);
+  const comments = useSelector((state) => state.trip.expenseDetail?.comments);
   const user = useSelector((state) => state.session.user);
   const handleClose = (e) => {
     setShowExpense(false);
@@ -55,7 +56,7 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
             </div>
           </div>
           <CommentsContainer
-            comments={expense.comments}
+            comments={comments}
             expense={expense}
             members={members}
           />

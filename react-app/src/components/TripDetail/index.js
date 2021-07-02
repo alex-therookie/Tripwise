@@ -83,7 +83,9 @@ const TripDetail = () => {
             userBalance
           ).toFixed(2)}`}</div>
         ) : (
-          <div className="trip-subbar">{`Trip balance: +$${userBalance}`}</div>
+          <div className="trip-subbar">{`Trip balance: +$${userBalance.toFixed(
+            2
+          )}`}</div>
         )}
         <div className="trip-subbar">
           Trip members:

@@ -130,6 +130,15 @@ export const getExpenses = (tripId) => async (dispatch) => {
   }
 };
 
+export const getExpenseDetail = (expenseId) => async (dispatch) => {
+  const res = await fetch(`/api/expenses/${expenseId}`);
+  if (res.ok) {
+    const expenseDetailData = await res.json();
+    console.log("EXPENSES DATA ====> ", expenseDetailData);
+    dispatch(setExpenseDetail(expenseDetailData));
+  }
+};
+
 export const postTrip = (name, photoUrl, members) => async (dispatch) => {
   const users = members.map((user) => user.value);
   const res = await fetch(`/api/trips/`, {
@@ -296,10 +305,12 @@ const tripReducer = (state = initialState, action) => {
     case ADD_EXPENSE: {
       const trip = state[action.expense.tripId];
       const activity = trip.activities[action.expense.activityId];
-      activity.expenses.push(action.expense);
+      const expense = action.expense;
+      activity.expenses.push(expense);
 
       return {
         ...state,
+        expenses: { ...state["expenses"], [expense.id]: expense },
         [trip.id]: {
           ...trip,
           activities: { ...trip.activities, [activity.id]: activity },

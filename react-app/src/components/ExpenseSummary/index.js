@@ -13,7 +13,6 @@ const ExpenseSummary = ({ expense, expenseClick }) => {
     dispatch(setExpenseDetail(expense));
     expenseClick();
   };
-  console.log(expense.id);
 
   return (
     <>

@@ -14,11 +14,13 @@ const CommentsContainer = ({ comments, expense, members }) => {
     setUserComment("");
   };
   return (
-    <div className="comments-container">
-      <h4>Comments</h4>
-      {comments.map((comment) => (
-        <Comment comment={comment} members={members} />
-      ))}
+    <>
+      <div className="comments-container">
+        <h4>Comments</h4>
+        {comments.map((comment) => (
+          <Comment comment={comment} members={members} />
+        ))}
+      </div>
       <div className="add-comment">
         <form className="comment-form" onSubmit={handleSubmit}>
           <textarea
@@ -31,7 +33,7 @@ const CommentsContainer = ({ comments, expense, members }) => {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,7 @@
 .comments-container {
   padding: 7px;
+  max-height: 450px;
+  overflow: auto;
 }
 
 .comments-container h4 {
@@ -21,6 +23,7 @@
   max-height: 100px;
   overflow: auto;
   padding: 4px;
+  border-radius: 3px;
 }
 
 .comment-form textarea:focus {
@@ -35,4 +38,10 @@
   color: #fff;
   text-shadow: 0 -1px 0 #c83400;
   width: 50px;
+}
+
+.add-comment {
+  padding: 7px;
+  margin-bottom: 10px;
+  border-top: 1px solid #ddd;
 }

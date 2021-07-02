@@ -17,7 +17,7 @@ const Comment = ({ comment, members }) => {
           <div className="comment-user">{members[comment.userId]} says: </div>
           {comment.userId === user.id ? (
             <div className="comment-del" onClick={handleDelete}>
-              <i class="fas fa-times del-icon"></i>
+              <i className="fas fa-times del-icon"></i>
             </div>
           ) : null}
         </div>
