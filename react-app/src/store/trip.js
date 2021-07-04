@@ -326,16 +326,25 @@ const tripReducer = (state = initialState, action) => {
     }
 
     case ADD_COMMENT: {
+      const exp = state.expenses[action.comment.expenseId];
       return {
         ...state,
         expenseDetail: {
           ...state.expenseDetail,
           comments: [...state.expenseDetail.comments, action.comment],
         },
+        expenses: {
+          ...state.expenses,
+          [exp.id]: {
+            ...state.expenses[exp.id],
+            comments: [...state.expenses[exp.id].comments, action.comment],
+          },
+        },
       };
     }
 
     case REMOVE_COMMENT: {
+      const exp = state.expenses[action.comment.expenseId];
       const filteredComments = state.expenseDetail.comments
         .slice()
         .filter((comment) => comment.id !== action.comment.id);
@@ -344,6 +353,13 @@ const tripReducer = (state = initialState, action) => {
         expenseDetail: {
           ...state.expenseDetail,
           comments: [...filteredComments],
+        },
+        expenses: {
+          ...state.expenses,
+          [exp.id]: {
+            ...state.expenses[exp.id],
+            comments: [...filteredComments],
+          },
         },
       };
     }

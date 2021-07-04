@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ExpenseFormModal from "../ExpenseFormModal";
 import ExpenseSummary from "../ExpenseSummary";
 import ExpenseDetail from "../ExpenseDetail";
@@ -7,6 +8,12 @@ import "./Activity.css";
 const Activity = ({ activity }) => {
   const [openActivity, setOpenActivity] = useState(false);
   const [showExpense, setShowExpense] = useState(false);
+  const allExpenses = useSelector((state) => state.trip.expenses);
+  const activityExpenses = [];
+  for (let expId in allExpenses) {
+    if (allExpenses[expId].activityId === activity.id)
+      activityExpenses.push(allExpenses[expId]);
+  }
   const activityClick = () => {
     setOpenActivity(!openActivity);
   };
@@ -16,7 +23,7 @@ const Activity = ({ activity }) => {
   };
 
   // TODO: Refactor activities classnames
-
+  console.log("ALL EXPENSES ", allExpenses);
   return (
     <div className="activity-container">
       <div className="activity-summary" onClick={activityClick}>
@@ -44,7 +51,7 @@ const Activity = ({ activity }) => {
         </div>
         <div className="act-exp-header">Current expenses</div>
         <div className="activity-expenses-container scroll scroll1">
-          {activity.expenses.map((expense) => (
+          {activityExpenses.map((expense) => (
             <ExpenseSummary
               key={expense.id}
               expense={expense}
