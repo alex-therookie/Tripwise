@@ -8,6 +8,8 @@ const CommentsContainer = ({ comments, expense, members }) => {
   const dispatch = useDispatch();
   const [userComment, setUserComment] = useState("");
 
+  console.log("COMMENTS ORDER ====> ", comments);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (userComment) dispatch(postComment(userComment, expense.id));
