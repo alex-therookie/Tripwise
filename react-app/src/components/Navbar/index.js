@@ -69,7 +69,11 @@ const NavBar = () => {
         </li> */}
       </ul>
       <ul className={menuClicked ? "nav-drawer active" : "nav-drawer"}>
-        <li className="nav-drawer-links">Dashboard</li>
+        <li className="nav-drawer-links">
+          <NavLink className="dashboard" to={"/"}>
+            Dashboard
+          </NavLink>
+        </li>
         <li className="nav-drawer-links">Expenses</li>
         <li className="nav-drawer-links">Trips</li>
         <li className="nav-drawer-links">

@@ -22,6 +22,7 @@ class Trip(db.Model):
         }
 
     def to_dict_detail(self):
+
         return {
             "id": self.id,
             "name": self.name,

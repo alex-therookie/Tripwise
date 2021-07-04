@@ -114,7 +114,8 @@
   background-color: rgba(221, 221, 221, 0.76);
 }
 
-.friends {
+.friends,
+.dashboard {
   text-decoration: none;
   color: #838383;
 }
