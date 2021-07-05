@@ -20,7 +20,7 @@ const CommentsContainer = ({ comments, expense, members }) => {
       <div className="comments-container">
         <h4>Comments</h4>
         {comments.map((comment) => (
-          <Comment comment={comment} members={members} />
+          <Comment key={comment.id} comment={comment} members={members} />
         ))}
       </div>
       <div className="add-comment">

@@ -39,8 +39,8 @@ class User(db.Model, UserMixin):
   followers = db.relationship(
         "User",
         secondary=follows,
-        primaryjoin=(follows.c.follower_id == id),
-        secondaryjoin=(follows.c.followed_id == id),
+        primaryjoin=(follows.c.followed_id == id),
+        secondaryjoin=(follows.c.follower_id == id),
         backref=db.backref("follows", lazy="dynamic"),
         lazy="dynamic"
     )
@@ -67,5 +67,6 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "user_expenses": {user_expense.id: str(user_expense.balance) for user_expense in self.user_expenses},
       "followers": [follower.username for follower in self.followers],
+      "following": [follow.username for follow in self.follows],
       "trips": [{"id":trip.id, "name": trip.name} for trip in self.trips]
     }

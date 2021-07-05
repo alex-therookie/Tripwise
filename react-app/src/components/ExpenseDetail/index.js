@@ -39,13 +39,13 @@ const ExpenseDetail = ({ setShowExpense, showExpense }) => {
               {Object.values(expense.expense_users).map((expUser) => {
                 if (expUser.userId === expense.userId) {
                   return (
-                    <div className="exp-detail-user">{`${
+                    <div key={expUser.id} className="exp-detail-user">{`${
                       members[expUser.userId]
                     } paid $${expense.amount}`}</div>
                   );
                 } else {
                   return (
-                    <div className="exp-detail-user">{`${
+                    <div key={expUser.id} className="exp-detail-user">{`${
                       members[expUser.userId]
                     } owes ${members[expense.userId]} $${Math.abs(
                       expUser.balance
