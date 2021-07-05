@@ -32,3 +32,9 @@
   padding: 13px 10px 10px;
   border-bottom: 1px solid #ddd;
 }
+
+.friend {
+  height: 40px;
+  padding: 5px;
+  border: 1px solid #ddd;
+}
