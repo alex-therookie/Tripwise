@@ -69,14 +69,20 @@ const NavBar = () => {
         </li> */}
       </ul>
       <ul className={menuClicked ? "nav-drawer active" : "nav-drawer"}>
-        <li className="nav-drawer-links">
+        <li
+          className="nav-drawer-links"
+          onClick={() => setMenuClicked(!menuClicked)}
+        >
           <NavLink className="dashboard" to={"/"}>
             Dashboard
           </NavLink>
         </li>
         <li className="nav-drawer-links">Expenses</li>
         <li className="nav-drawer-links">Trips</li>
-        <li className="nav-drawer-links">
+        <li
+          className="nav-drawer-links"
+          onClick={() => setMenuClicked(!menuClicked)}
+        >
           <NavLink className="friends" to={"/friends"}>
             Friends
           </NavLink>

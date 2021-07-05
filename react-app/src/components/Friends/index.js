@@ -28,10 +28,10 @@ const Friends = () => {
       </div>
       <div className="friend-list">
         {following &&
-          following.map((name) => {
+          following.map((user) => {
             return (
-              <div key={name} className="friend">
-                {name}
+              <div key={user.value} className="friend">
+                {user.label}
               </div>
             );
           })}

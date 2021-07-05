@@ -12,14 +12,26 @@ const CreateTrip = () => {
   const [photoUrl, setPhotoUrl] = useState("");
   const [members, setMembers] = useState([]);
   const [friends, setFriends] = useState([]);
+  const usersOfInterest = useSelector((state) => {
+    const allUsers = [
+      ...state.session.user.following,
+      ...state.session.user.followers,
+    ];
+    let userSet = new Set();
+    const uniqueUsers = [];
+    allUsers.forEach((user) => {
+      if (!userSet.has(user.value)) {
+        uniqueUsers.push(user);
+        userSet.add(user.value);
+      }
+    });
+    return uniqueUsers;
+  });
+
+  console.log(usersOfInterest);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/api/users/");
-      const responseData = await response.json();
-      setFriends(responseData.users);
-    }
-    fetchData();
+    setFriends(usersOfInterest);
   }, []);
 
   const handleSubmit = async (e) => {

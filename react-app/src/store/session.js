@@ -62,8 +62,6 @@ export const addFollow = (email) => async (dispatch) => {
     }),
   });
   const userData = await response.json();
-  console.log("FOLLOWED_USER DATA ", userData);
-
   dispatch(followUser(userData));
   return {};
 };
@@ -113,7 +111,10 @@ export default function sessionReducer(state = initialState, action) {
       return {
         user: {
           ...state.user,
-          following: [...state.user.following, action.user.username],
+          following: [
+            ...state.user.following,
+            { value: action.user.id, label: action.user.username },
+          ],
         },
       };
     default:

@@ -4,6 +4,8 @@
   border: none;
   border-radius: 10px;
   margin: 0 auto;
+  position: relative;
+  top: 75px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
