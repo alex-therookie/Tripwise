@@ -1,5 +1,6 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const FOLLOW_USER = "session/FOLLOW_USER";
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -8,6 +9,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+});
+
+const followUser = (user) => ({
+  type: FOLLOW_USER,
+  user,
 });
 
 export const authenticate = () => async (dispatch) => {
@@ -42,6 +48,23 @@ export const login = (email, password) => async (dispatch) => {
   }
 
   dispatch(setUser(data));
+  return {};
+};
+
+export const addFollow = (email) => async (dispatch) => {
+  const response = await fetch("/api/follows/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  });
+  const userData = await response.json();
+  console.log("FOLLOWED_USER DATA ", userData);
+
+  dispatch(followUser(userData));
   return {};
 };
 
@@ -85,6 +108,14 @@ export default function sessionReducer(state = initialState, action) {
       return { user: action.payload };
     case REMOVE_USER:
       return { user: null };
+
+    case FOLLOW_USER:
+      return {
+        user: {
+          ...state.user,
+          following: [...state.user.following, action.user.username],
+        },
+      };
     default:
       return state;
   }

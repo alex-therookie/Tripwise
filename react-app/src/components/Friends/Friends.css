@@ -3,5 +3,32 @@
   width: 60%;
   /* border: 1px solid gray; */
   margin: 0 auto;
+  top: 75px;
+  position: relative;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.friends-topbar {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eee;
+  padding: 13px 10px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.friends-topbar h2 {
+  color: #333;
+  margin: 0 2px;
+  text-align: center;
+}
+
+.friends-subbar {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: #eee;
+  padding: 13px 10px 10px;
+  border-bottom: 1px solid #ddd;
 }

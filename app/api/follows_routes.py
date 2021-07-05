@@ -10,13 +10,11 @@ follows_routes = Blueprint('follows', __name__)
 def follow():
     data = request.json
     user_email = data["email"]
-    user_name = data["username"]
-    curr_user = User.query.get(7)
-    followedUser = User.query.filter((User.email == user_email) | (User.username == user_name)).first()
+    curr_user = User.query.get(current_user.get_id())
+    followedUser = User.query.filter(User.email == user_email).first()
     followedUser.followers.append(curr_user)
 
     db.session.add(followedUser)
-    # db.session.add(curr_user)
     db.session.commit()
 
-    return curr_user.to_dict()
+    return followedUser.to_dict()
