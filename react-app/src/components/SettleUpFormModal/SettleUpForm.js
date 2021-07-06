@@ -34,6 +34,7 @@ const SettleUpForm = ({ expense, setShowModal }) => {
       <form className="SettleUp-form">
         <div className="payment-container">
           <h4>Amount to pay</h4>
+          <span>$</span>
           <input
             className="payment-input"
             type="text"

@@ -52,6 +52,7 @@
 
 .nav-menu-items {
   display: grid;
+  min-width: 142px;
   grid-template-columns: repeat(4, auto);
   grid-gap: 15px;
   list-style: none;

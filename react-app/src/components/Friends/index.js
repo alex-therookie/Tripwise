@@ -33,6 +33,7 @@ const Friends = () => {
           following.map((user) => {
             return (
               <div key={user.value} className="friend">
+                <i className="fas fa-user-alt user-icon"></i>
                 {user.label}
               </div>
             );
