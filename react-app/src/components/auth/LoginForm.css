@@ -80,3 +80,16 @@ form {
   text-shadow: 0 -1px 0 #ffb649;
   width: 360px;
 }
+
+.logout-btn {
+  background-color: #03989e;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+  height: 20px;
+  /* width: 50px; */
+  border: none;
+  text-shadow: 0 -1px 0 #017d81;
+  padding: 0px 3px;
+  cursor: pointer;
+}

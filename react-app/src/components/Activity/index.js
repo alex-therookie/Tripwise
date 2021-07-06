@@ -23,7 +23,6 @@ const Activity = ({ activity }) => {
   };
 
   // TODO: Refactor activities classnames
-  console.log("ALL EXPENSES ", allExpenses);
   return (
     <div className="activity-container">
       <div className="activity-summary" onClick={activityClick}>

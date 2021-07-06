@@ -24,7 +24,9 @@ const Friends = () => {
           onChange={(e) => setAddedUser(e.target.value)}
           value={addedUser}
         ></input>
-        <button onClick={handleAddUser}>Add</button>
+        <button className="btn-small" onClick={handleAddUser}>
+          Add
+        </button>
       </div>
       <div className="friend-list">
         {following &&
