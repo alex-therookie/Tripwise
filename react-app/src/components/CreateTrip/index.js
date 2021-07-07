@@ -12,6 +12,7 @@ const CreateTrip = () => {
   const [photoUrl, setPhotoUrl] = useState("");
   const [members, setMembers] = useState([]);
   const [friends, setFriends] = useState([]);
+  const currUser = useSelector((state) => state.session.user);
   const usersOfInterest = useSelector((state) => {
     const allUsers = [
       ...state.session.user.following,
@@ -41,7 +42,7 @@ const CreateTrip = () => {
   };
 
   const onChangeInput = (value) => {
-    setMembers(value);
+    setMembers([...value, { label: currUser.username, value: currUser.id }]);
   };
 
   // TODO: Make selector get only following not all users
