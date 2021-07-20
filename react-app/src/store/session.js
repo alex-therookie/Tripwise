@@ -1,6 +1,7 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const FOLLOW_USER = "session/FOLLOW_USER";
+const LOAD_USER_EXPENSES = "session/LOAD_USER_EXPENSES";
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -16,6 +17,13 @@ const followUser = (user) => ({
   user,
 });
 
+export const loadUserExpenses = (expenses) => {
+  return {
+    type: LOAD_USER_EXPENSES,
+    expenses,
+  };
+};
+
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
     headers: {
@@ -28,6 +36,14 @@ export const authenticate = () => async (dispatch) => {
   }
 
   dispatch(setUser(data));
+};
+
+export const getUserExpenses = () => async (dispatch) => {
+  const res = await fetch("/api/expenses/");
+  if (res.ok) {
+    const expensesData = await res.json();
+    dispatch(loadUserExpenses(expensesData.userExpenses));
+  }
 };
 
 export const login = (email, password) => async (dispatch) => {
@@ -117,6 +133,19 @@ export default function sessionReducer(state = initialState, action) {
           ],
         },
       };
+    case LOAD_USER_EXPENSES: {
+      const expensesObj = {};
+      action.expenses.forEach((exp) => {
+        expensesObj[exp.id] = exp;
+      });
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          expenses: expensesObj,
+        },
+      };
+    }
     default:
       return state;
   }

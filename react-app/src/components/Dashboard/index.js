@@ -1,11 +1,49 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { getUserExpenses } from "../../store/session";
 import Trips from "../Trips/index";
-import Footer from "../Footer";
 import "./Dashboard.css";
 
-// TODO: Make get request to get trips a user is member of
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
+  const expenses = useSelector((state) => state.session.user.expenses);
+  const [userBalance, setUserBalance] = useState(0);
+  const [userOwes, setUserOwes] = useState(0);
+  const [userIsOwed, setUserIsOwed] = useState(0);
+
+  useEffect(() => {
+    dispatch(getUserExpenses());
+  }, [dispatch]);
+
+  useEffect(() => {
+    let owes = 0;
+    let owed = 0;
+
+    for (const key in expenses) {
+      if (expenses[key].userId === user.id) {
+        for (const expUser in expenses[key].expense_users) {
+          if (expUser !== user.id.toString()) {
+            owed += Math.abs(
+              parseFloat(expenses[key].expense_users[expUser].balance)
+            );
+          }
+        }
+      } else if (expenses[key].expense_users[user.id]) {
+        let owesTemp = parseFloat(
+          expenses[key].expense_users[user.id]?.balance
+        );
+        owes += isNaN(owesTemp) ? 0.0 : owesTemp;
+      }
+    }
+
+    let total = owed + owes;
+    setUserBalance(total);
+    setUserOwes(owes);
+    setUserIsOwed(owed);
+  }, [userBalance, expenses]);
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-items">
@@ -21,20 +59,39 @@ const Dashboard = () => {
         <div>
           <span>total balance</span>
           <br />
-          <span id="total-balance">$66.93</span>
+          <span
+            className={
+              userBalance < 0 ? "total-balance negative" : "total-balance"
+            }
+          >
+            {userBalance < 0
+              ? `-$${Math.abs(userBalance.toFixed(2))}`
+              : `$${userBalance.toFixed(2)}`}
+          </span>
         </div>
-        <div id="balance-one">
+        <div className="balance-one">
           <span>you owe</span>
           <br />
-          <span id="you-owe">$123.97</span>
+          <span className={userOwes < 0 ? "you-owe negative" : "you-owe"}>
+            {userOwes < 0
+              ? `-$${Math.abs(userOwes.toFixed(2))}`
+              : `$${userOwes.toFixed(2)}`}
+          </span>
         </div>
         <div>
           <span>you are owed</span>
           <br />
-          <span id="you-are-owed">$56.04</span>
+          <span
+            className={
+              userIsOwed < 0 ? "you-are-owed negative" : "you-are-owed"
+            }
+          >
+            {userIsOwed < 0
+              ? `-$${Math.abs(userIsOwed.toFixed(2))}`
+              : `$${userIsOwed.toFixed(2)}`}
+          </span>
         </div>
       </div>
-      {/* <h3>Your trips</h3> */}
       <Trips />
     </div>
   );

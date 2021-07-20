@@ -33,12 +33,18 @@ def create_expenses():
 
     return expense.to_dict()
 
+@expense_routes.route("/")
+def get_user_expenses():
+    curr_user_id = current_user.get_id()
+    expense_ids = [r[0] for r in ExpenseUser.query.filter(ExpenseUser.userId == curr_user_id).values(ExpenseUser.expenseId)]
+    expenses = Expense.query.filter(Expense.id.in_(expense_ids)).all()
+    return {"userExpenses": [expense.to_dict() for expense in expenses] }
+
 @expense_routes.route("/<int:tripId>")
-def get_expenses(tripId):
+def get_trip_expenses(tripId):
     expenses = Expense.query.filter(Expense.tripId == tripId).all()
     return {"expenses": [expense.to_dict() for expense in expenses] }
 
-    return {}, 204
 #TODO Chnage this to expense_user route
 @expense_routes.route("/<int:expId>", methods=['PUT'])
 def update_expense_user(expId):
@@ -49,7 +55,6 @@ def update_expense_user(expId):
     if total >= 0:
         user_expense.balance = 0
     else:
-        print("NOT BIGER ZERO =====> ", total)
         user_expense.balance = total
     db.session.commit()
 
@@ -59,7 +64,6 @@ def update_expense_user(expId):
 def delete_expense(id):
     if current_user.is_authenticated:
         expense = Expense.query.get(id)
-        print("THIS IS TRIP =====> ", expense)
         expense_user_id = str(expense.userId)
         if current_user.get_id() == expense_user_id:
             db.session.delete(expense)

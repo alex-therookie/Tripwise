@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Expense
 from app import db
 
 user_routes = Blueprint('users', __name__)
@@ -11,8 +11,7 @@ user_routes = Blueprint('users', __name__)
 def users():
     users = User.query.all()
     return {"users": [{"value":user.id, "label": user.username} for user in users]}
-    #Temp change, must be changed in redux store
-    #return {"users": [{user.to_dict() for user in users]}
+
 
 
 @user_routes.route('/<int:id>')

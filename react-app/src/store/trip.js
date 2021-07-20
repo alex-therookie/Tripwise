@@ -125,7 +125,6 @@ export const getExpenses = (tripId) => async (dispatch) => {
   const res = await fetch(`/api/expenses/${tripId}`);
   if (res.ok) {
     const expensesData = await res.json();
-    console.log("EXPENSES DATA ====> ", expensesData);
     dispatch(loadExpenses(expensesData.expenses));
   }
 };

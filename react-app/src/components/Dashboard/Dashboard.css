@@ -42,20 +42,20 @@
   color: #333;
 }
 
-#balance-one {
+.balance-one {
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
 }
 
-#total-balance {
+.total-balance.negative,
+.you-owe.negative,
+.you-are-owed.negative {
   color: #ff652f;
 }
 
-#you-owe {
-  color: #ff652f;
-}
-
-#you-are-owed {
+.you-owe,
+.you-are-owed,
+.total-balance {
   color: #5bc5a7;
 }
 
