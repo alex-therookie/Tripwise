@@ -1,0 +1,36 @@
+.footer-container {
+  height: 109px;
+  width: 100%;
+  /* border: 1px solid red; */
+  background-color: #07858a;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #333;
+}
+
+.dev-profile {
+  display: flex;
+  text-shadow: 0 -1px 0 #036b6e;
+}
+
+.dev-pic {
+  object-fit: cover;
+  height: 100%;
+  margin-right: 10px;
+}
+
+.dev-details a {
+  color: white;
+}
+
+.dev-details h3 {
+  font-weight: normal;
+}

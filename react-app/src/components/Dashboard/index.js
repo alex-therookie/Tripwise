@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Trips from "../Trips/index";
+import Footer from "../Footer";
 import "./Dashboard.css";
 
 // TODO: Make get request to get trips a user is member of

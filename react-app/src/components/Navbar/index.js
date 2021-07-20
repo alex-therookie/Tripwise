@@ -33,7 +33,7 @@ const NavBar = () => {
                 to="/login"
                 exact={true}
                 activeClassName="active"
-                className="nav-menu-item"
+                className="nav-menu-item login"
               >
                 Login
               </NavLink>
@@ -43,7 +43,7 @@ const NavBar = () => {
                 to="/sign-up"
                 exact={true}
                 activeClassName="active"
-                className="nav-menu-item"
+                className="nav-menu-item sign-up"
               >
                 Sign Up
               </NavLink>

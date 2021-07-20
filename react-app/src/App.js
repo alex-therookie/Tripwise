@@ -11,6 +11,7 @@ import Dashboard from "./components/Dashboard";
 import TripDetail from "./components/TripDetail";
 import Friends from "./components/Friends";
 import CreateTrip from "./components/CreateTrip";
+import Footer from "./components/Footer";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <Footer />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
