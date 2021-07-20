@@ -5,7 +5,8 @@ import devPic from "../../images/alex.jpg";
 
 const Footer = () => {
   const location = useLocation();
-  if (location.pathname !== "/") {
+  console.log("LOCATION ===> ", location.pathname);
+  if (location.pathname === "/login" || location.pathname === "/sign-up") {
     return null;
   }
   return (

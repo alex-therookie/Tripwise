@@ -11,13 +11,13 @@ html {
   font-family: "Helvetica";
   min-width: 581px;
   scroll-behavior: smooth;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* body,

@@ -45,55 +45,57 @@ const Dashboard = () => {
   }, [userBalance, expenses]);
 
   return (
-    <div className="dashboard-container">
-      <div className="dashboard-items">
-        <h2>Dashboard</h2>
-        <div className="dashboard-btn-wrapper">
-          <NavLink to={"/new-trip"}>
-            <button className="btn btn-large btn-green">Plan a trip</button>
-          </NavLink>
-          <button className="btn btn-large btn-orange">Settle up</button>
+    <>
+      <div className="dashboard-container">
+        <div className="dashboard-items">
+          <h2>Dashboard</h2>
+          <div className="dashboard-btn-wrapper">
+            <NavLink to={"/new-trip"}>
+              <button className="btn btn-large btn-green">Plan a trip</button>
+            </NavLink>
+            <button className="btn btn-large btn-orange">Settle up</button>
+          </div>
         </div>
+        <div className="dashboard-balances">
+          <div>
+            <span>total balance</span>
+            <br />
+            <span
+              className={
+                userBalance < 0 ? "total-balance negative" : "total-balance"
+              }
+            >
+              {userBalance < 0
+                ? `-$${Math.abs(userBalance.toFixed(2))}`
+                : `$${userBalance.toFixed(2)}`}
+            </span>
+          </div>
+          <div className="balance-one">
+            <span>you owe</span>
+            <br />
+            <span className={userOwes < 0 ? "you-owe negative" : "you-owe"}>
+              {userOwes < 0
+                ? `-$${Math.abs(userOwes.toFixed(2))}`
+                : `$${userOwes.toFixed(2)}`}
+            </span>
+          </div>
+          <div>
+            <span>you are owed</span>
+            <br />
+            <span
+              className={
+                userIsOwed < 0 ? "you-are-owed negative" : "you-are-owed"
+              }
+            >
+              {userIsOwed < 0
+                ? `-$${Math.abs(userIsOwed.toFixed(2))}`
+                : `$${userIsOwed.toFixed(2)}`}
+            </span>
+          </div>
+        </div>
+        <Trips />
       </div>
-      <div className="dashboard-balances">
-        <div>
-          <span>total balance</span>
-          <br />
-          <span
-            className={
-              userBalance < 0 ? "total-balance negative" : "total-balance"
-            }
-          >
-            {userBalance < 0
-              ? `-$${Math.abs(userBalance.toFixed(2))}`
-              : `$${userBalance.toFixed(2)}`}
-          </span>
-        </div>
-        <div className="balance-one">
-          <span>you owe</span>
-          <br />
-          <span className={userOwes < 0 ? "you-owe negative" : "you-owe"}>
-            {userOwes < 0
-              ? `-$${Math.abs(userOwes.toFixed(2))}`
-              : `$${userOwes.toFixed(2)}`}
-          </span>
-        </div>
-        <div>
-          <span>you are owed</span>
-          <br />
-          <span
-            className={
-              userIsOwed < 0 ? "you-are-owed negative" : "you-are-owed"
-            }
-          >
-            {userIsOwed < 0
-              ? `-$${Math.abs(userIsOwed.toFixed(2))}`
-              : `$${userIsOwed.toFixed(2)}`}
-          </span>
-        </div>
-      </div>
-      <Trips />
-    </div>
+    </>
   );
 };
 

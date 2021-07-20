@@ -10,8 +10,7 @@
 }
 
 .main-footer {
-  position: absolute;
-  bottom: 0;
+  position: relative;
   width: 100%;
   border-top: 1px solid #333;
 }

@@ -33,7 +33,6 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Footer />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -60,6 +59,7 @@ function App() {
           <Friends />
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
