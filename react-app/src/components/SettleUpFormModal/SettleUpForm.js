@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { putPayment } from "../../store/trip";
 import "./SettleUpForm.css";
 
 const SettleUpForm = ({ expense, setShowModal }) => {
   const dispatch = useDispatch();
   const [payment, setPayment] = useState("");
-  const exp_users = useSelector(
-    (state) => state.trip.expenses[expense.id].expense_users
-  );
+  // const exp_users = useSelector(
+  //   (state) => state.trip.expenses[expense.id].expense_users
+  // );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +16,6 @@ const SettleUpForm = ({ expense, setShowModal }) => {
       payment,
       expenseId: expense.id,
     };
-    console.log("SEttleUpForm =====> ", settleUpForm);
 
     const transfer = await dispatch(putPayment(settleUpForm));
     if (transfer) {

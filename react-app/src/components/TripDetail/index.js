@@ -21,7 +21,7 @@ const TripDetail = () => {
   useEffect(() => {
     dispatch(getTrip(tripId));
     dispatch(getExpenses(tripId));
-  }, [dispatch]);
+  }, [dispatch, tripId]);
 
   const handleDelete = async () => {
     dispatch(deleteTrip(tripId));

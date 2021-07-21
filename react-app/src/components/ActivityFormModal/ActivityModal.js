@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import { ModalContext } from "../../context/Modal";
 import "./ActivityModal.css";

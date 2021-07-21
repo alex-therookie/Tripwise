@@ -1,4 +1,4 @@
-import React, { useState, UseEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFollow } from "../../store/session";
 import "./Friends.css";

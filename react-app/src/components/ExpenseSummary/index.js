@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import ExpenseDetail from "../ExpenseDetail";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { setExpenseDetail } from "../../store/trip";
 import "./ExpenseSummary.css";
 
 const ExpenseSummary = ({ expense, expenseClick }) => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
-  const expUser = expense.expense_users[user.id];
+  // const user = useSelector((state) => state.session.user);
+  // const expUser = expense.expense_users[user.id];
 
   const handleClick = () => {
     dispatch(setExpenseDetail(expense));

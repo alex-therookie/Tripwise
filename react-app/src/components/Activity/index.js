@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ExpenseFormModal from "../ExpenseFormModal";
 import ExpenseSummary from "../ExpenseSummary";
@@ -22,7 +22,6 @@ const Activity = ({ activity }) => {
     setShowExpense(true);
   };
 
-  // TODO: Refactor activities classnames
   return (
     <div className="activity-container">
       <div className="activity-summary" onClick={activityClick}>

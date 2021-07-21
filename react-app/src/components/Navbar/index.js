@@ -20,7 +20,7 @@ const NavBar = () => {
         </div>
         <img className="nav-img-logo" src={tripwiseLogo} />
         <div className="nav-logo">
-          <Link to="/" exact={true} style={{ textDecoration: "none" }}>
+          <Link to="/" exact="true" style={{ textDecoration: "none" }}>
             <h2>Tripwise</h2>
           </Link>
         </div>
@@ -31,7 +31,7 @@ const NavBar = () => {
             <li>
               <NavLink
                 to="/login"
-                exact={true}
+                exact="true"
                 activeClassName="active"
                 className="nav-menu-item login"
               >
@@ -41,7 +41,7 @@ const NavBar = () => {
             <li>
               <NavLink
                 to="/sign-up"
-                exact={true}
+                exact="true"
                 activeClassName="active"
                 className="nav-menu-item sign-up"
               >
@@ -60,7 +60,7 @@ const NavBar = () => {
         {/* <li>
           <NavLink
             to="/users"
-            exact={true}
+            exact="true"
             activeClassName="active"
             className="nav-menu-item"
           >

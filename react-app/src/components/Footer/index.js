@@ -1,6 +1,5 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import "./Footer.css";
 import devPic from "../../images/alex.jpg";
 
@@ -15,7 +14,7 @@ const Footer = () => {
         <div className="footer-container">
           <div className="dev-profile">
             <div className="pic-container">
-              <img className="dev-pic" src={devPic}></img>
+              <img alt="dev-pic" className="dev-pic" src={devPic}></img>
             </div>
             <div className="dev-details">
               <h3>Alex Rodriguez</h3>

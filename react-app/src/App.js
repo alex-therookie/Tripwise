@@ -15,7 +15,7 @@ import Footer from "./components/Footer";
 import { authenticate } from "./store/session";
 
 function App() {
-  const user = useSelector((state) => state.session.user);
+  // const user = useSelector((state) => state.session.user);
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -34,28 +34,28 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path="/login" exact={true}>
+        <Route exact path="/login">
           <LoginForm />
         </Route>
-        <Route path="/sign-up" exact={true}>
+        <Route exact path="/sign-up">
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
+        <ProtectedRoute exact path="/users">
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
+        <ProtectedRoute exact path="/users/:userId">
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <ProtectedRoute exact path="/">
           <Dashboard />
         </ProtectedRoute>
-        <ProtectedRoute path="/trips/:tripId" exact={true}>
+        <ProtectedRoute exact path="/trips/:tripId">
           <TripDetail />
         </ProtectedRoute>
-        <ProtectedRoute path="/new-trip" exact={true}>
+        <ProtectedRoute exact path="/new-trip">
           <CreateTrip />
         </ProtectedRoute>
-        <ProtectedRoute path="/friends" exact={true}>
+        <ProtectedRoute exact path="/friends">
           <Friends />
         </ProtectedRoute>
       </Switch>

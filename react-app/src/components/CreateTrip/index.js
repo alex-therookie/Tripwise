@@ -29,8 +29,6 @@ const CreateTrip = () => {
     return uniqueUsers;
   });
 
-  console.log(usersOfInterest);
-
   useEffect(() => {
     setFriends(usersOfInterest);
   }, []);
@@ -44,8 +42,6 @@ const CreateTrip = () => {
   const onChangeInput = (value) => {
     setMembers([...value, { label: currUser.username, value: currUser.id }]);
   };
-
-  // TODO: Make selector get only following not all users
 
   return (
     <div className="trip-form-container" onSubmit={handleSubmit}>

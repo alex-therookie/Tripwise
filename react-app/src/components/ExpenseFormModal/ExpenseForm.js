@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
 import { postExpense } from "../../store/trip";
 import Select from "react-select";
 import "./ExpenseForm.css";

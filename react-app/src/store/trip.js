@@ -92,7 +92,6 @@ export const getTrip = (tripId) => async (dispatch) => {
   const res = await fetch(`/api/trips/${tripId}`);
   if (res.ok) {
     const trip = await res.json();
-    console.log(trip);
     dispatch(loadTrip(trip));
   }
 };
@@ -103,7 +102,6 @@ export const deleteTrip = (tripId) => async (dispatch) => {
   });
   if (res.ok) {
     const trip = await res.json();
-    console.log(trip);
     dispatch(removeTrip(trip));
     return trip;
   }
@@ -115,7 +113,6 @@ export const deleteExpense = (expenseId) => async (dispatch) => {
   });
   if (res.ok) {
     const expense = await res.json();
-    console.log("EXPENSE DELETE ====> ", expense);
     dispatch(removeExpense(expense));
     return expense;
   }
@@ -133,7 +130,6 @@ export const getExpenseDetail = (expenseId) => async (dispatch) => {
   const res = await fetch(`/api/expenses/${expenseId}`);
   if (res.ok) {
     const expenseDetailData = await res.json();
-    console.log("EXPENSES DATA ====> ", expenseDetailData);
     dispatch(setExpenseDetail(expenseDetailData));
   }
 };
@@ -162,13 +158,11 @@ export const postComment = (text, expenseId) => async (dispatch) => {
 };
 
 export const deleteComment = (comment) => async (dispatch) => {
-  console.log("THIS IS COMMENT ====> ", comment);
   const res = await fetch(`/api/comments/${comment.id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId: comment.userId }),
   });
-  console.log("THIS IS RES ====> ", res);
   if (res.status === 204) {
     dispatch(removeComment(comment));
   }
@@ -177,14 +171,12 @@ export const deleteComment = (comment) => async (dispatch) => {
 export const putPayment =
   ({ payment, expenseId }) =>
   async (dispatch) => {
-    console.log("STORE PAYMENT ====> ", expenseId);
     const res = await fetch(`/api/expenses/${expenseId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ payment }),
     });
     const userExpData = await res.json();
-    console.log("USER EXP =====> ", userExpData);
     dispatch(addPayment(userExpData));
     return userExpData;
   };
@@ -228,7 +220,6 @@ export const postExpense =
       }),
     });
     const expenseData = await res.json();
-    console.log(expenseData);
     dispatch(addExpense(expenseData));
     return expenseData;
   };
