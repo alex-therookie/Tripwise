@@ -5,11 +5,6 @@ from flask_login import current_user
 
 trip_routes = Blueprint('trips', __name__)
 
-@trip_routes.route("/")
-def get_trips():
-    trips = Trip.query.all()
-    return {"trips": [trip.to_dict() for trip in trips] }
-
 @trip_routes.route('/<int:id>')
 def get_trip(id):
     trip = Trip.query.get(id)

@@ -2,6 +2,7 @@ const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const FOLLOW_USER = "session/FOLLOW_USER";
 const LOAD_USER_EXPENSES = "session/LOAD_USER_EXPENSES";
+const LOAD_USER_TRIPS = "session/LOAD_USER_TRIPS";
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -24,6 +25,13 @@ export const loadUserExpenses = (expenses) => {
   };
 };
 
+export const loadUserTrips = (trips) => {
+  return {
+    type: LOAD_USER_TRIPS,
+    trips,
+  };
+};
+
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
     headers: {
@@ -43,6 +51,14 @@ export const getUserExpenses = () => async (dispatch) => {
   if (res.ok) {
     const expensesData = await res.json();
     dispatch(loadUserExpenses(expensesData.userExpenses));
+  }
+};
+
+export const getUserTrips = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/users/${userId}/trips`);
+  if (res.ok) {
+    const tripsData = await res.json();
+    dispatch(loadUserTrips(tripsData.trips));
   }
 };
 
@@ -132,6 +148,8 @@ export default function sessionReducer(state = initialState, action) {
           ],
         },
       };
+
+    // The problem is here!
     case LOAD_USER_EXPENSES: {
       const expensesObj = {};
       action.expenses.forEach((exp) => {
@@ -141,7 +159,20 @@ export default function sessionReducer(state = initialState, action) {
         ...state,
         user: {
           ...state.user,
-          expenses: expensesObj,
+          expenses: { ...state.user.expenses, ...expensesObj },
+        },
+      };
+    }
+
+    case LOAD_USER_TRIPS: {
+      const userTrips = action.trips.map((trip) => {
+        return { id: trip.id, name: trip.name };
+      });
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          trips: [...action.trips],
         },
       };
     }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import { postTrip } from "../../store/trip";
+import { getUserTrips } from "../../store/session";
 import "./CreateTrip.css";
 
 const CreateTrip = () => {
@@ -36,6 +37,7 @@ const CreateTrip = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const trip = await dispatch(postTrip(name, photoUrl, members));
+    dispatch(getUserTrips(currUser.id));
     if (trip) history.push(`/trips/${trip.id}`);
   };
 
