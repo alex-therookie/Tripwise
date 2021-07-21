@@ -17,6 +17,11 @@ const LoginForm = () => {
     if (data.errors) setErrors(user.errors);
   };
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login("demo@aa.io", "password"));
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -66,6 +71,9 @@ const LoginForm = () => {
           </button>
         </div>
       </form>
+      <button onClick={demoLogin} className="btn signup-btn demo-login">
+        Demo user
+      </button>
     </div>
   );
 };
