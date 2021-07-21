@@ -53,7 +53,7 @@ const Dashboard = () => {
             <NavLink to={"/new-trip"}>
               <button className="btn btn-large btn-green">Plan a trip</button>
             </NavLink>
-            <button className="btn btn-large btn-orange">Settle up</button>
+            {/* <button className="btn btn-large btn-orange">Settle up</button> */}
           </div>
         </div>
         <div className="dashboard-balances">

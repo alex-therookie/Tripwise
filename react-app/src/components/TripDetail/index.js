@@ -17,8 +17,6 @@ const TripDetail = () => {
   const user = useSelector((state) => state.session.user);
   const [userBalance, setUserBalance] = useState(0);
   const expenses = useSelector((state) => state.trip.expenses);
-  console.log("EXPENSES ", expenses);
-  console.log("user balance", userBalance);
 
   useEffect(() => {
     dispatch(getTrip(tripId));
@@ -79,13 +77,19 @@ const TripDetail = () => {
           </div>
         </div>
         {userBalance < 0 ? (
-          <div className="trip-subbar">{`Trip balance: -$${Math.abs(
-            userBalance
-          ).toFixed(2)}`}</div>
+          <div className="trip-subbar">
+            Trip balance:
+            <span className="subbar-balance negative">
+              {`-$${Math.abs(userBalance.toFixed(2))}`}
+            </span>
+          </div>
         ) : (
-          <div className="trip-subbar">{`Trip balance: +$${userBalance.toFixed(
-            2
-          )}`}</div>
+          <div className="trip-subbar">
+            Trip balance:
+            <span className="subbar-balance">
+              {`$${userBalance.toFixed(2)}`}
+            </span>
+          </div>
         )}
         <div className="trip-subbar">
           Trip members:

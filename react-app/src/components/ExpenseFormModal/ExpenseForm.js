@@ -44,9 +44,6 @@ const ExpenseForm = ({ setShowModal, activity }) => {
     if (expense) setShowModal(false);
   };
 
-  // TODO: Make selector get only trip members not all users
-  // TODO: refactor Activity.id
-
   useEffect(() => {
     const membersArr = newGroup.filter(
       (member) => currUser.value !== member.value
@@ -85,14 +82,14 @@ const ExpenseForm = ({ setShowModal, activity }) => {
             value={amount}
           />
         </div>
-        <input
+        {/* <input
           className="photoUrl-input"
           type="text"
           name="photoUrl"
           value={photoUrl}
           placeholder="Photo URL"
           onChange={(e) => setPhotoUrl(e.target.value)}
-        />
+        /> */}
         <div>
           Split the bill with friends:
           {members.length && (

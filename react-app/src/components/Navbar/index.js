@@ -77,7 +77,7 @@ const NavBar = () => {
             Dashboard
           </NavLink>
         </li>
-        <li className="nav-drawer-links">Expenses</li>
+        {/* <li className="nav-drawer-links">Expenses</li> */}
         <li
           className="nav-drawer-links"
           onClick={() => setMenuClicked(!menuClicked)}

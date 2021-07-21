@@ -64,7 +64,7 @@ const CreateTrip = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <h4>Add a picture!</h4>
           <input
             className="photoUrl-input"
@@ -74,7 +74,7 @@ const CreateTrip = () => {
             placeholder="Photo URL"
             onChange={(e) => setPhotoUrl(e.target.value)}
           />
-        </div>
+        </div> */}
         <div>
           <h4>Add members!</h4>
           <Select
