@@ -1,5 +1,5 @@
 .footer-container {
-  height: 109px;
+  height: 100px;
   width: 100%;
   /* border: 1px solid red; */
   background-color: #07858a;
@@ -10,14 +10,16 @@
 }
 
 .main-footer {
-  position: relative;
+  position: absolute;
   width: 100%;
   border-top: 1px solid #333;
+  bottom: -100px;
 }
 
 .dev-profile {
   display: flex;
   text-shadow: 0 -1px 0 #036b6e;
+  /* border: 1px solid blue; */
 }
 
 .dev-pic {

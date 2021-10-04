@@ -37,7 +37,6 @@ const CreateTrip = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const trip = await dispatch(postTrip(name, photoUrl, members));
-    dispatch(getUserTrips(currUser.id));
     if (trip) history.push(`/trips/${trip.id}`);
   };
 
