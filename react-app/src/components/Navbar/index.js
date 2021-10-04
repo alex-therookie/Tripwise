@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useSelector } from "react-redux";
 import "./NavBar.css";
@@ -8,6 +8,8 @@ import tripwiseLogo from "../../images/Tripwiselogo.png";
 const NavBar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
   const user = useSelector((state) => state.session.user);
+  let history = useHistory();
+  const handleClick = () => {};
 
   return (
     <nav className="nav-container">
@@ -71,20 +73,22 @@ const NavBar = () => {
       <ul className={menuClicked ? "nav-drawer active" : "nav-drawer"}>
         <li
           className="nav-drawer-links"
-          onClick={() => setMenuClicked(!menuClicked)}
+          onClick={() => {
+            history.push("/");
+            setMenuClicked(!menuClicked);
+          }}
         >
-          <NavLink className="dashboard" to={"/"}>
-            Dashboard
-          </NavLink>
+          Dashboard
         </li>
         {/* <li className="nav-drawer-links">Expenses</li> */}
         <li
           className="nav-drawer-links"
-          onClick={() => setMenuClicked(!menuClicked)}
+          onClick={() => {
+            history.push("/friends");
+            setMenuClicked(!menuClicked);
+          }}
         >
-          <NavLink className="friends" to={"/friends"}>
-            Friends
-          </NavLink>
+          Friends
         </li>
       </ul>
     </nav>

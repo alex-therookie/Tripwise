@@ -119,6 +119,7 @@
 .dashboard {
   text-decoration: none;
   color: #838383;
+  height: 100%;
 }
 
 .login,
