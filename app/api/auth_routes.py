@@ -34,7 +34,6 @@ def login():
     Logs a user in
     """
     form = LoginForm()
-    print("FORM HERE =========> ", form)
     print(request.get_json())
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
@@ -43,8 +42,6 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
-        print("WE ARE HERE BOYYZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ")
-        print(user.to_dict(), "THIS IS THE ONEEEEEEEEEE")
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

@@ -9,7 +9,6 @@ const NavBar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
   const user = useSelector((state) => state.session.user);
   let history = useHistory();
-  const handleClick = () => {};
 
   return (
     <nav className="nav-container">
