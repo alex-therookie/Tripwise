@@ -1,6 +1,7 @@
 .trips-container {
   display: flex;
   flex-direction: column;
+  max-height: 600px;
 }
 
 .trip-summary {

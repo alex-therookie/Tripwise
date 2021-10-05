@@ -4,7 +4,8 @@
   /* border: 1px solid gray; */
   margin: 0 auto;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-  position: relative;
+  /* position: relative; */
+  margin-top: 75px;
   top: 75px;
   /* TODO: make it same as trip */
 }

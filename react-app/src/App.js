@@ -59,7 +59,7 @@ function App() {
           <Friends />
         </ProtectedRoute>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
