@@ -6,6 +6,7 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navbar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
+import NotFound from "./components/NotFound";
 import User from "./components/User";
 import Dashboard from "./components/Dashboard";
 import TripDetail from "./components/TripDetail";
@@ -58,8 +59,8 @@ function App() {
         <ProtectedRoute exact path="/friends">
           <Friends />
         </ProtectedRoute>
+        <NotFound path="*" />
       </Switch>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
